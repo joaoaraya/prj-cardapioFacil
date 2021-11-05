@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 /* Importar páginas */
 import { Home } from "./pages/Home";
+import { Editor } from "./pages/Editor";
 
 /*OBS: Nessa versão 6.0 usar Routes no lugar de Swicth,
 element no lugar de content,
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/menu/edit' element={<Editor />} />
       </Routes>
     </BrowserRouter>
   );

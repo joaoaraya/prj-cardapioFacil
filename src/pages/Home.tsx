@@ -15,10 +15,12 @@ export function Home() {
                 <div>
                     <h1>Monte e compartilhe seu cardápio</h1>
                     <h2>fácil, rápido e de graça!</h2>
-                    <button>
-                        <img src={googleIconImg} alt="" />
-                        Entrar com o Google
-                    </button>
+                    <a href="/menu/edit">
+                        <button>
+                            <img src={googleIconImg} alt="" />
+                            Entrar com o Google
+                        </button>
+                    </a>
                 </div>
             </main>
         </div>
