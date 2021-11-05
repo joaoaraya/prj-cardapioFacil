@@ -1,0 +1,119 @@
+.home {
+    height: 100vh; /* Ocupar 100% da altura da tela */
+
+    aside, main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    aside {
+        background-color: #FE8F00;   
+
+        img {
+            height: 80%;
+            width: 80%;
+        }
+    }
+
+    main {
+        div {
+            text-align: center;
+            margin: 20px;
+            color: #FFFFFF;
+
+            h1 {
+                font-weight: 500;
+            }
+            h2 {
+                font-weight: 300;
+                margin-top: 8px;
+            }
+            button {
+                width: 100%;
+                font-weight: 500;
+                font-size: 20px;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 4rem;
+                padding: 16px 0;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                color: #FFFFFF;
+                background-color: #FE8F00;
+            }
+            button:hover {
+                background-color: #EE4A34;
+            }
+        }
+    }
+}
+
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .home {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: auto;
+
+        aside {
+            grid-column: 1;
+            grid-row: 1;
+
+            img {
+                max-width: 412px;
+            }
+        }
+
+        main {
+            grid-column: 2;
+            grid-row: 1;
+
+            div {
+                width: 300px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    }
+
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {   
+    .home {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        
+        aside {
+            grid-column: 1;
+            grid-row: 1;
+
+            img{
+                max-height: 300px;
+            }
+        }
+
+        main{
+            grid-column: 1;
+            grid-row: 2;
+
+            div {
+                width: 80%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    }
+}
