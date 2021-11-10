@@ -1,9 +1,9 @@
 /* Importar Imagens */
 import homeImg from '../assets/images/home.svg';
-import googleIconImg from '../assets/images/google.svg';
+import googleIcon from '../assets/icons/google.svg';
 
 /* Importar estilo da página */
-import '../styles/home.scss';
+import '../styles/pages/home.scss';
 
 export function Home() {
     return (
@@ -17,7 +17,7 @@ export function Home() {
                     <h2>fácil, rápido e de graça!</h2>
                     <a href="/menu/edit">
                         <button>
-                            <img src={googleIconImg} alt="" />
+                            <img src={googleIcon} alt="" />
                             Entrar com o Google
                         </button>
                     </a>

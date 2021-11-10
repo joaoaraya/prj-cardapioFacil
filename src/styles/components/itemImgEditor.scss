@@ -1,0 +1,46 @@
+.itemImgEditor {
+    background: #131822;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        margin: 32px;
+        background: transparent;
+
+        img {
+            width: 48px;
+            height: 48px;
+            opacity: 0.6;
+        }
+    }
+    button:hover {
+        
+        img {
+            opacity: 1;
+        }
+    }
+}
+
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .itemImgEditor {
+    
+        button {
+            width: 224px;
+            height: 224px;
+        }
+    }
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) { 
+    .itemImgEditor {
+    
+        button {
+            width: auto;
+            height: auto;
+        }
+    }
+}

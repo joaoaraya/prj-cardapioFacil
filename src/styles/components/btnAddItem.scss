@@ -1,0 +1,20 @@
+.btnAddItem {
+    margin-bottom: 2rem;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 8px;
+        color: rgb(255,255,255);
+        background: #131822;
+    }
+    button:hover {
+        background: #FE8F00;
+    }
+}

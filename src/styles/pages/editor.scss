@@ -1,0 +1,93 @@
+.editor {
+    padding: 24px 16px;
+
+    .headerNav {
+        display: flex;
+        justify-content: center;
+        align-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 24px;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 25%;
+            min-width: 150px;
+            padding: 8px 0;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 8px;
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        button.active, button:hover {
+            background: #FE8F00;
+        }
+    }
+}
+
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .editor {
+
+        .pageEdit {
+
+            .tag {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: 1fr;
+                grid-auto-flow: dense;
+                gap: 16px;
+
+                .itemImgEditor {
+                    grid-column: 1;
+                    grid-row-start: span 4;
+                    align-self: start;
+                }
+        
+                .itemTagEditor {
+                    grid-column: 2;
+                    grid-row: auto;
+                    align-self: start;
+                }
+                
+                .item, .btnAddItem {
+                    grid-column: 2;
+                    grid-row: auto;
+                }
+            }
+        }
+    
+        .pagePreview {
+    
+        }
+    }
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {   
+    .editor {
+
+        .pageEdit {
+
+            .tag {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+                gap: 16px;
+
+                .itemTagEditor, .itemImgEditor, .item, .btnAddItem {
+                    grid-column: 1;
+                    grid-row: auto;
+                }
+            }
+        }
+    
+        .pagePreview {
+    
+        }
+    }
+}
