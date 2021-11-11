@@ -7,6 +7,7 @@ import { BtnAddItem } from '../components/BtnAddItem';
 /* Importar imagens */
 import editIcon from '../assets/icons/edit.png'
 import viewIcon from '../assets/icons/view.png'
+import addIcon from '../assets/icons/add.png'
 
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
@@ -36,7 +37,12 @@ export function Editor() {
                 <img src="x" alt="" />
                 <Item />
     </div>*/}
-            <button>+</button>
+
+            <div className="floatButton">
+                <button title="Add categoria">
+                    <img src={addIcon} alt="" />
+                </button>
+            </div>
         </div>
     )
 }

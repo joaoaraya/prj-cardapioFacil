@@ -13,6 +13,11 @@
         border-radius: 8px;
         color: rgb(255,255,255);
         background: #131822;
+
+        img {
+            width: 16px;
+            height: 16px;
+        }
     }
     button:hover {
         background: #FE8F00;
