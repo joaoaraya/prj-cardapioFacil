@@ -1,0 +1,25 @@
+.itemImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid #fe8f00;
+    border-radius: 8px;
+    background: #131822;
+}
+
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .itemImg {
+        width: 256px;
+        height: 256px;
+    }
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
+    .itemImg {
+        width: auto;
+        height: 128px;
+    }
+}

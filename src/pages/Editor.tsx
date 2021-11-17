@@ -5,8 +5,7 @@ import { ItemImgEditor } from '../components/ItemImgEditor';
 import { BtnAddItem } from '../components/BtnAddItem';
 
 /* Importar imagens */
-import editIcon from '../assets/icons/edit.png'
-import viewIcon from '../assets/icons/view.png'
+import copyIcon from '../assets/icons/copy.svg'
 import addIcon from '../assets/icons/add.png'
 
 /* Importar estilo da página */
@@ -16,8 +15,10 @@ export function Editor() {
     return (
         <div className="editor">
             <div className="headerNav">
-                <button><img src={editIcon} alt="" />Editar</button>
-                <button><img src={viewIcon} alt="" />Prévia</button>
+                <button>
+                    <span>Cardápio #fhuh7rhb34b8ybf</span>
+                    <img src={copyIcon} alt="" />
+                </button>
             </div>
 
             <div className="pageEdit">
@@ -30,13 +31,6 @@ export function Editor() {
                     <BtnAddItem />
                 </div>
             </div>
-
-            {/*<div className="pagePreview">
-                <span>UAG72T3V<button>Copy</button></span>
-                <input type="text" placeholder="Categoria" />
-                <img src="x" alt="" />
-                <Item />
-    </div>*/}
 
             <div className="floatButton">
                 <button title="Add categoria">

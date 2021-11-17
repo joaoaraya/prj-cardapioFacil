@@ -1,0 +1,33 @@
+.barSearch {
+    padding: 16px 56px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(19, 24, 34);
+    box-shadow: 4px 24px 60px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 8px;
+    background: url("/src/assets/icons/search.svg") center left 16px no-repeat;
+    background-color: rgb(255, 255, 255);
+}
+
+.barSearch::placeholder {
+    color: rgb(179, 180, 191);
+}
+
+/* Tamanho Desktop */
+
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .barSearch {
+        width: 80%;
+        max-width: 600px;
+    }
+}
+
+/* Tamanho Mobile */
+
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
+    .barSearch {
+        width: 90%;
+        max-width: 100%;
+    }
+}

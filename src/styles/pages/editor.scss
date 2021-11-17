@@ -6,7 +6,7 @@
     .headerNav {
         display: flex;
         justify-content: center;
-        align-content: space-between;
+        align-content: center;
         flex-wrap: wrap;
         gap: 16px;
         margin-bottom: 24px;
@@ -14,19 +14,17 @@
         button {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 25%;
-            min-width: 112px;
-            padding: 8px 0;
-            font-weight: bold;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+            padding: 8px 16px;
             font-size: 16px;
             border-radius: 8px;
-            color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.2);
+            color: rgb(255, 255, 255);
+            background: rgb(254, 143, 0);
         }
-        button.active, button:hover {
-            background: #FE8F00;
+        button:hover {
+            background: rgb(204, 103, 8);
         }
     }
 
@@ -43,7 +41,7 @@
             padding: 20px;
             width: 72px;
             height: 72px;
-            background-color: #FE8F00;
+            background-color: rgb(254, 143, 0);
 
             img {
                 width: 32px;
@@ -51,7 +49,7 @@
             }
         }
         button:hover {
-            background-color: #cc6708;
+            background-color: rgb(206, 104, 9);
         }
     }
 }
@@ -59,9 +57,7 @@
 /* Tamanho Desktop */
 @media screen and (min-device-width: 768px), screen and (min-width: 768px) {
     .editor {
-
         .pageEdit {
-
             .tag {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -74,47 +70,47 @@
                     grid-row-start: span 4;
                     align-self: start;
                 }
-        
+
                 .itemTagEditor {
                     grid-column: 2;
                     grid-row: auto;
                     align-self: start;
                 }
-                
-                .item, .btnAddItem {
+
+                .item,
+                .btnAddItem {
                     grid-column: 2;
                     grid-row: auto;
                 }
             }
         }
-    
+
         .pagePreview {
-    
         }
     }
 }
 
 /* Tamanho Mobile */
-@media screen and (max-device-width: 768px), screen and (max-width: 768px) {   
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
     .editor {
-
         .pageEdit {
-
             .tag {
                 display: grid;
                 grid-template-columns: 1fr;
                 grid-template-rows: 1fr;
                 gap: 16px;
 
-                .itemTagEditor, .itemImgEditor, .item, .btnAddItem {
+                .itemTagEditor,
+                .itemImgEditor,
+                .item,
+                .btnAddItem {
                     grid-column: 1;
                     grid-row: auto;
                 }
             }
         }
-    
+
         .pagePreview {
-    
         }
     }
 }

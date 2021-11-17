@@ -1,0 +1,24 @@
+.itemTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    h1 {
+        padding: 4px 44px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        color: rgb(255, 255, 255);
+        background: rgb(254, 143, 0);
+        border-radius: 12px 2px;
+    }
+    /* Antes do texto */
+    &::before,
+    &::after {
+        content: "";
+        flex: 1;
+        margin: 0 20px;
+        border-top: 8px dotted rgb(84, 88, 111);
+    }
+}
