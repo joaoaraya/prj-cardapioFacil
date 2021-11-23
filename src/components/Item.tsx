@@ -9,15 +9,18 @@ import '../styles/components/item.scss'
 import { Modal } from '../components/Modal'
 
 type ItemProps = {
+    titulo?: string;
+    desc?: string;
+    valor?: string;
     children?: ReactNode; // (? = opcional) Elementos dentro do componente
 }
 
-export function Item({ children }: ItemProps) {
+export function Item({ titulo = "titulo", desc = "desc", valor = "R$ 0,00", children }: ItemProps) {
     return (
         <div className='item'>
-            <h1>Clássico</h1>
-            <h2>hamburguer, picles e tomate</h2>
-            <span>R$ 29,00</span>
+            <h1>{titulo}</h1>
+            <h2>{desc}</h2>
+            <span>{valor}</span>
             <div>
                 {children /* Inclui-los aqui */}
             </div>

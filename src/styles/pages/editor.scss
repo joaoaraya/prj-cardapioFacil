@@ -22,6 +22,12 @@
             border-radius: 8px;
             color: rgb(255, 255, 255);
             background: rgb(254, 143, 0);
+
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
         button:hover {
             background: rgb(204, 103, 8);
@@ -84,9 +90,6 @@
                 }
             }
         }
-
-        .pagePreview {
-        }
     }
 }
 
@@ -108,9 +111,6 @@
                     grid-row: auto;
                 }
             }
-        }
-
-        .pagePreview {
         }
     }
 }

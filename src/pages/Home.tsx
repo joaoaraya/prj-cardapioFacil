@@ -1,3 +1,7 @@
+/* Importar Funções */
+import { logInGoogle } from '../functions/googleAuth'
+import { AuthRedirect } from '../hooks/authRedirect'
+
 /* Importar Imagens */
 import homeImg from '../assets/images/home.svg';
 import googleIcon from '../assets/icons/google.svg';
@@ -6,6 +10,9 @@ import googleIcon from '../assets/icons/google.svg';
 import '../styles/pages/home.scss';
 
 export function Home() {
+
+    AuthRedirect('/menu/edit');
+
     return (
         <div className='home'>
             <aside>
@@ -15,12 +22,10 @@ export function Home() {
                 <div>
                     <h1>Monte e compartilhe seu cardápio</h1>
                     <h2>fácil, rápido e de graça!</h2>
-                    <a href="/menu/edit">
-                        <button>
-                            <img src={googleIcon} alt="" />
-                            Entrar com o Google
-                        </button>
-                    </a>
+                    <button onClick={logInGoogle} >
+                        <img src={googleIcon} alt="" />
+                        Entrar com o Google
+                    </button>
                 </div>
             </main>
         </div>

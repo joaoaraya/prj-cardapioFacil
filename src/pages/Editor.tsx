@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { procurarDoc } from '../functions/firestore'
+
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
 import { ItemTagEditor } from '../components/ItemTagEditor';
@@ -11,12 +14,19 @@ import addIcon from '../assets/icons/add.png'
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
 
+
+const userId = localStorage.getItem('@cardapio-facil/userid');
+
 export function Editor() {
+    useEffect(() => {
+        procurarDoc();
+    });
+
     return (
         <div className="editor">
             <div className="headerNav">
                 <button>
-                    <span>Cardápio #fhuh7rhb34b8ybf</span>
+                    <span>Cardápio url: /{userId}</span>
                     <img src={copyIcon} alt="" />
                 </button>
             </div>

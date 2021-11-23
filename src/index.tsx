@@ -2,6 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+/* Banco de dados */
+import './services/firebase';
+
 /* Importar páginas */
 import App from './App';
 
