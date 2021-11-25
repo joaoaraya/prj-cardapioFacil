@@ -4,17 +4,7 @@ import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } 
 const db = getFirestore();
 const dbCollection = 'cardapios' // Nome da coleção que escolher
 const userId = localStorage.getItem('@cardapio-facil/userid');
-
-// Montar componentes do Cardapio
-const montarCardapio = (querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-
-        // COLOCAR AQUI COMO RETORNAR COMPONENTES DO CARDÁPIO
-
-        console.log(doc.id, " => ", doc.data());
-    });
-}
-
+let cardapioDados = {};
 
 // Procurar doc no firestore
 export async function procurarDoc() {
@@ -26,19 +16,22 @@ export async function procurarDoc() {
         const q = query(collection(db, dbCollection), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
 
-        carregarDoc(querySnapshot);
+        querySnapshot.forEach((doc) => {
+
+            cardapioDados = doc.data()
+
+        });
+
+        try {
+            return cardapioDados;
+        } catch (e) {
+            return e;
+        }
     }
     else {
         // Doc não encontrado
         criarNovoDoc();
     }
-}
-
-
-// Carregar dados do Doc
-export async function carregarDoc(querySnapshot) {
-    montarCardapio(querySnapshot);
-    // console.log(searchName.value)
 }
 
 // Criar novo Doc

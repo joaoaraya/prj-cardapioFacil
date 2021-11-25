@@ -28,7 +28,7 @@ export function Item({ titulo = "titulo", desc = "desc", valor = "R$ 0,00", chil
     )
 }
 
-export function ItemButtons() {
+export function ItemButtons({ titulo, desc, valor }: ItemProps) {
     const [showModal, setModal] = useState(false);
 
     return (
@@ -37,9 +37,9 @@ export function ItemButtons() {
             <button className="btnDel">Excluir</button>
             {showModal ?
                 <Modal>
-                    <input type="text" placeholder="Produto" />
-                    <input type="text" placeholder="Descrição" />
-                    <input type="text" placeholder="R$ 0,00" />
+                    <input type="text" placeholder="Produto" value={titulo} />
+                    <input type="text" placeholder="Descrição" value={desc} />
+                    <input type="text" placeholder="R$ 0,00" value={valor} />
                     <button type='submit' className="btnSave">Salvar</button>
                     <button className="btnCancel">Cancelar</button>
                 </Modal> : null}

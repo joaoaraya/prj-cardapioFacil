@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { procurarDoc } from '../functions/firestore'
+//import { useEffect } from 'react';
+//import { procurarDoc } from '../functions/firestore'
+import { cardapioDados } from '../functions/firestoreTemp'
 
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
@@ -14,13 +15,50 @@ import addIcon from '../assets/icons/add.png'
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
 
-
-const userId = localStorage.getItem('@cardapio-facil/userid');
-
 export function Editor() {
-    useEffect(() => {
-        procurarDoc();
-    });
+    const userId = localStorage.getItem('@cardapio-facil/userid');
+
+    /*useEffect(() => {
+        // let cardapioDados = procurarDoc();
+        //console.log(cardapioDados.cardapio[0].categoria[0].itens[0].titulo)
+    });*/
+
+    // Incluir dados aos componentes pelo objeto do Firebase
+    // Organizar os componentes em ordem
+    const cardapio = () => {
+        let montarCardapio = [];
+
+        for (let ia = 0; ia < cardapioDados.cardapio.length; ia++) {
+            /// Quantos cardápios? (mudar esse código quando hover mais de 1 cardapio para não carregar todos de uma vez)
+
+            for (let ib = 0; ib < cardapioDados.cardapio[ia].categoria.length; ib++) {
+                /// Quantas categorias?
+
+                const dataCategoria = cardapioDados.cardapio[ia].categoria[ib];
+                // Imagem da categoria
+                if (dataCategoria.imgURL != null) {
+                    montarCardapio.push(<ItemImgEditor />);
+                }
+                // Nome da categoria
+                montarCardapio.push(<ItemTagEditor titulo={dataCategoria.titulo} />);
+
+                for (let ic = 0; ic < cardapioDados.cardapio[ia].categoria[ib].itens.length; ic++) {
+                    /// Quantos itens?
+
+                    const dataItens = cardapioDados.cardapio[ia].categoria[ib].itens[ic];
+                    // Itens
+                    montarCardapio.push(
+                        <Item titulo={dataItens.titulo} desc={dataItens.desc} valor={`R$ ${dataItens.valor}`}>
+                            <ItemButtons titulo={dataItens.titulo} desc={dataItens.desc} valor={`R$ ${dataItens.valor}`} />
+                        </Item>
+                    );
+
+                }
+                montarCardapio.push(<BtnAddItem />);
+            }
+        }
+        return montarCardapio;
+    }
 
     return (
         <div className="editor">
@@ -32,14 +70,7 @@ export function Editor() {
             </div>
 
             <div className="pageEdit">
-                <div className="tag">
-                    <ItemTagEditor />
-                    <ItemImgEditor />
-                    <Item>
-                        <ItemButtons />
-                    </Item>
-                    <BtnAddItem />
-                </div>
+                {cardapio()}
             </div>
 
             <div className="floatButton">

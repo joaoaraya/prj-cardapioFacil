@@ -1,10 +1,14 @@
 /* Importar estilo */
 import '../styles/components/itemTag.scss';
 
-export function ItemTag() {
+type ItemProps = {
+    titulo?: string;
+}
+
+export function ItemTag({ titulo }: ItemProps) {
     return (
         <div className='itemTag'>
-            <h1>Categoria</h1>
+            <h1>{titulo}</h1>
         </div>
     )
 }

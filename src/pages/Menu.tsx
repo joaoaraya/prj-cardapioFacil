@@ -11,6 +11,10 @@ import addIcon from '../assets/icons/add.png'
 import '../styles/pages/menu.scss'
 
 export function Menu() {
+
+    /// Ler HTTP get para gerar o objeto do cardapio pelo firebase
+    // caso nao for encontrado redirecionar para cardapio nao encontrado
+
     return (
         <div className="menu">
             <div className="header">

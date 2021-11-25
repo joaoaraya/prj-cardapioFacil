@@ -10,12 +10,16 @@ import '../styles/components/itemTagEditor.scss';
 /* Componentes */
 import { Modal } from '../components/Modal'
 
-export function ItemTagEditor() {
+type ItemProps = {
+    titulo?: string;
+}
+
+export function ItemTagEditor({ titulo }: ItemProps) {
     const [showModal, setModal] = useState(false);
 
     return (
         <div className='itemTagEditor'>
-            <span>Categoria</span>
+            <span>{titulo}</span>
             <button onClick={() => setModal(true)} title="Editar categoria">
                 <img src={editIcon} alt="editar" />
             </button>
