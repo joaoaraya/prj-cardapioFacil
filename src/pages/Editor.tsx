@@ -1,5 +1,5 @@
-//import { useEffect } from 'react';
-//import { procurarDoc } from '../functions/firestore'
+import { useEffect } from 'react';
+import { procurarDoc } from '../functions/firestore'
 import { cardapioDados } from '../functions/firestoreTemp'
 
 /* Importar Componetes da pagina */
@@ -15,18 +15,36 @@ import addIcon from '../assets/icons/add.png'
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
 
-export function Editor() {
+/*
+type componentsCardapioTypes = {
+    cardapioDados: {
+        cardapio: {
+            categoria: {
+                titulo: string;
+                imgURL: string;
+                itens: {
+                    titulo: string;
+                    desc: string;
+                    valor: string;
+                }[];
+            }[];
+        }[];
+    }
+}*/
+
+export function Editor(/*{ cardapioDados }: componentsCardapioTypes*/) {
     const userId = localStorage.getItem('@cardapio-facil/userid');
 
-    /*useEffect(() => {
-        // let cardapioDados = procurarDoc();
-        //console.log(cardapioDados.cardapio[0].categoria[0].itens[0].titulo)
-    });*/
+    useEffect(() => {
+        let cardapioDados = procurarDoc();
+        console.log(cardapioDados);
+    });
 
     // Incluir dados aos componentes pelo objeto do Firebase
     // Organizar os componentes em ordem
-    const cardapio = () => {
+    const componentsCardapio = () => {
         let montarCardapio = [];
+
 
         for (let ia = 0; ia < cardapioDados.cardapio.length; ia++) {
             /// Quantos cardápios? (mudar esse código quando hover mais de 1 cardapio para não carregar todos de uma vez)
@@ -54,9 +72,11 @@ export function Editor() {
                     );
 
                 }
+                // Botão adicionar item (no final de todos itens)
                 montarCardapio.push(<BtnAddItem />);
             }
         }
+
         return montarCardapio;
     }
 
@@ -70,7 +90,7 @@ export function Editor() {
             </div>
 
             <div className="pageEdit">
-                {cardapio()}
+                {componentsCardapio()}
             </div>
 
             <div className="floatButton">

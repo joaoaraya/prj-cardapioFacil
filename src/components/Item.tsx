@@ -1,6 +1,5 @@
 /* Importar dependencias */
-import { useState } from 'react';
-import { ReactNode } from "react"
+import { useState, ReactNode } from 'react';
 
 /* importar estilo */
 import '../styles/components/item.scss'
@@ -15,7 +14,7 @@ type ItemProps = {
     children?: ReactNode; // (? = opcional) Elementos dentro do componente
 }
 
-export function Item({ titulo = "titulo", desc = "desc", valor = "R$ 0,00", children }: ItemProps) {
+export function Item({ titulo = "titulo", desc = "desc", valor = "0.00", children }: ItemProps) {
     return (
         <div className='item'>
             <h1>{titulo}</h1>
@@ -30,6 +29,9 @@ export function Item({ titulo = "titulo", desc = "desc", valor = "R$ 0,00", chil
 
 export function ItemButtons({ titulo, desc, valor }: ItemProps) {
     const [showModal, setModal] = useState(false);
+    const [getTitulo, setTitulo] = useState(titulo);
+    const [getDesc, setDesc] = useState(desc);
+    const [getValor, setValor] = useState(valor);
 
     return (
         <div className='itemBtn'>
@@ -37,11 +39,13 @@ export function ItemButtons({ titulo, desc, valor }: ItemProps) {
             <button className="btnDel">Excluir</button>
             {showModal ?
                 <Modal>
-                    <input type="text" placeholder="Produto" value={titulo} />
-                    <input type="text" placeholder="Descrição" value={desc} />
-                    <input type="text" placeholder="R$ 0,00" value={valor} />
-                    <button type='submit' className="btnSave">Salvar</button>
-                    <button className="btnCancel">Cancelar</button>
+                    <form>
+                        <input type="text" placeholder="Produto" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
+                        <input type="text" placeholder="Descrição" value={getDesc} onInput={e => setDesc((e.target as HTMLTextAreaElement).value)} />
+                        <input type="text" placeholder="R$ 0,00" value={getValor} onInput={e => setValor((e.target as HTMLTextAreaElement).value)} />
+                        <button type='submit' className="btnSave">Salvar</button>
+                        <button className="btnCancel">Cancelar</button>
+                    </form>
                 </Modal> : null}
         </div>
     )
