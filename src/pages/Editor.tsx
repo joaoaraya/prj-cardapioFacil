@@ -30,21 +30,23 @@ type componentsCardapioTypes = {
             }[];
         }[];
     }
-}*/
+}
+*/
 
-export function Editor(/*{ cardapioDados }: componentsCardapioTypes*/) {
+export function Editor() {
     const userId = localStorage.getItem('@cardapio-facil/userid');
 
     useEffect(() => {
-        let cardapioDados = procurarDoc();
-        console.log(cardapioDados);
+        (async () => {
+            const cardapioDados: any = await procurarDoc()
+            console.log(cardapioDados);
+        })()
     });
 
     // Incluir dados aos componentes pelo objeto do Firebase
     // Organizar os componentes em ordem
-    const componentsCardapio = () => {
+    const componentsCardapio = (/*{ cardapioDados }: componentsCardapioTypes*/) => {
         let montarCardapio = [];
-
 
         for (let ia = 0; ia < cardapioDados.cardapio.length; ia++) {
             /// Quantos cardápios? (mudar esse código quando hover mais de 1 cardapio para não carregar todos de uma vez)
