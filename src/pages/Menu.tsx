@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { procurarCardapio } from '../functions/firestore'
 
 /* Importar Componetes da pagina */
@@ -29,20 +30,23 @@ type cardapioDadosTypes = {
 }[];
 
 export function Menu() {
-
-    /// Ler HTTP get para gerar o objeto do cardapio pelo firebase
-    // caso nao for encontrado redirecionar para cardapio nao encontrado
-
-    //userId = pegar da url
+    const getUrl = window.location.pathname; // Ler Url atual
+    const userId = getUrl.replace('/menu/', ''); // Obter somente o ID e apagar o restante da Url
+    const navigate = useNavigate();
 
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
     useEffect(() => {
         (async () => {
-            const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase
-            const dados = []; // Cria um array
-            dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
-            setCardapioDados(dados); // Atualiza o estado do componente com os dados
+            const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase, + envia o uuid
+
+            if (dadosDoFirebase == 404) {
+                navigate('/'); // MUDAR PARA UMA PAGINA "CARDAPIO NAO ENCONTRADO"
+            } else {
+                const dados = []; // Cria um array
+                dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
+                setCardapioDados(dados); // Atualiza o estado do componente com os dados
+            }
         })()
     }, []);
     // Obs: para executar o useEfect constante basta remover [] no final do evento

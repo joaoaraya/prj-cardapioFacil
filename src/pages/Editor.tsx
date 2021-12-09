@@ -8,7 +8,7 @@ import { ItemImgEditor } from '../components/ItemImgEditor';
 import { BtnAddItem } from '../components/BtnAddItem';
 
 /* Importar imagens */
-import copyIcon from '../assets/icons/copy.svg'
+import linkIcon from '../assets/icons/link.svg'
 import addIcon from '../assets/icons/add.png'
 
 /* Importar estilo da página */
@@ -35,7 +35,7 @@ export function Editor() {
 
     useEffect(() => {
         (async () => {
-            const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase
+            const dadosDoFirebase: any = await procurarCardapio(userId, true); // Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor
             const dados = []; // Cria um array
             dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
             setCardapioDados(dados); // Atualiza o estado do componente com os dados
@@ -43,12 +43,16 @@ export function Editor() {
     }, []);
     // Obs: para executar o useEfect constante basta remover [] no final do evento
 
+    const openUrl = () => {
+        window.open(`/menu/${userId}`);
+    }
+
     return (
         <div className="editor">
             <div className="headerNav">
-                <button>
+                <button onClick={openUrl}>
                     <span>Cardápio url: /{userId}</span>
-                    <img src={copyIcon} alt="Copiar" />
+                    <img src={linkIcon} alt="Copiar" />
                 </button>
             </div>
 

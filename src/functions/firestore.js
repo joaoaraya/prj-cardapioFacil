@@ -7,8 +7,9 @@ const dbCollection = 'cardapios' // Nome da coleção que escolher
 let cardapioDados = {};
 
 // Procurar doc no firestore
-export async function procurarCardapio(getUserId) {
-    const userId = getUserId;
+export const procurarCardapio = async (getUserId, getEditor = false) => {
+    const userId = getUserId; //UUID do user será o titulo do documento
+    const editor = getEditor; //Editor = true -> é o autor / Editor = false -> É quem está visitando o cardápio pelo link
     const colecao = doc(db, dbCollection, userId);
     const docSnap = await getDoc(colecao);
 
@@ -30,12 +31,16 @@ export async function procurarCardapio(getUserId) {
     }
     // Doc (cardápio) não encontrado
     else {
-        novoCardapio(userId);
+        if (editor) {
+            novoCardapio(userId);
+        } else {
+            return 404;
+        }
     }
 }
 
 // Criar novo Doc
-async function novoCardapio(userId) {
+const novoCardapio = async (userId) => {
     // Qual database e grupo?
     const colecao = doc(db, dbCollection, userId);
     // Dados que deseja incluir
@@ -57,8 +62,10 @@ async function novoCardapio(userId) {
         // Dados enviado com sucesso
         const inserirDados = dados;
         console.log("ID do doc adicionado: ", inserirDados.id);
+
     } catch (e) {
         // Erro ao enviar os dados
         console.error("Erro ao adicionar doc: ", e);
+
     }
 }
