@@ -3,23 +3,23 @@ import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } 
 // Databse do Firestore
 const db = getFirestore();
 const dbCollection = 'cardapios' // Nome da coleção que escolher
-const userId = localStorage.getItem('@cardapio-facil/userid');
+//const userId = localStorage.getItem('@cardapio-facil/userid');
 let cardapioDados = {};
 
 // Procurar doc no firestore
-export async function procurarDoc() {
+export async function procurarCardapio(getUserId) {
+    const userId = getUserId;
     const colecao = doc(db, dbCollection, userId);
     const docSnap = await getDoc(colecao);
 
+    // Doc (cardápio) encontrado
     if (docSnap.exists()) {
-        // Doc encotrado
+
         const q = query(collection(db, dbCollection), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach((doc) => {
-
             cardapioDados = doc.data()
-
         });
 
         try {
@@ -28,14 +28,14 @@ export async function procurarDoc() {
             return e;
         }
     }
+    // Doc (cardápio) não encontrado
     else {
-        // Doc não encontrado
-        criarNovoDoc();
+        novoCardapio(userId);
     }
 }
 
 // Criar novo Doc
-export async function criarNovoDoc() {
+async function novoCardapio(userId) {
     // Qual database e grupo?
     const colecao = doc(db, dbCollection, userId);
     // Dados que deseja incluir
@@ -44,10 +44,10 @@ export async function criarNovoDoc() {
         userId: userId,
         cardapio: [{
             categoria: [{
-                titulo: 'categoria',
+                titulo: 'nome da categoria',
                 imgURL: '',
                 itens: [
-                    { titulo: '', desc: '', valor: '' }, { titulo: '', desc: '', valor: '' }
+                    { titulo: 'produto de exemplo', desc: 'descrição, detalhes ou ingredientes', valor: '0,00' }
                 ]
             }]
         }]

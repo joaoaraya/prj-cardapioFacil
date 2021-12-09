@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-import { procurarDoc } from '../functions/firestore'
-import { cardapioDados } from '../functions/firestoreTemp'
+import { useEffect, useState } from 'react';
+import { procurarCardapio } from '../functions/firestore'
 
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
@@ -15,89 +14,68 @@ import addIcon from '../assets/icons/add.png'
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
 
-/*
-type componentsCardapioTypes = {
-    cardapioDados: {
-        cardapio: {
-            categoria: {
+/* Types  */
+type cardapioDadosTypes = {
+    cardapio: {
+        categoria: {
+            titulo: string;
+            imgURL: string;
+            itens: {
                 titulo: string;
-                imgURL: string;
-                itens: {
-                    titulo: string;
-                    desc: string;
-                    valor: string;
-                }[];
+                desc: string;
+                valor: string;
             }[];
         }[];
-    }
-}
-*/
+    }[];
+}[];
 
 export function Editor() {
     const userId = localStorage.getItem('@cardapio-facil/userid');
+    const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
     useEffect(() => {
         (async () => {
-            const cardapioDados: any = await procurarDoc()
-            console.log(cardapioDados);
+            const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase
+            const dados = []; // Cria um array
+            dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
+            setCardapioDados(dados); // Atualiza o estado do componente com os dados
         })()
-    });
-
-    // Incluir dados aos componentes pelo objeto do Firebase
-    // Organizar os componentes em ordem
-    const componentsCardapio = (/*{ cardapioDados }: componentsCardapioTypes*/) => {
-        let montarCardapio = [];
-
-        for (let ia = 0; ia < cardapioDados.cardapio.length; ia++) {
-            /// Quantos cardápios? (mudar esse código quando hover mais de 1 cardapio para não carregar todos de uma vez)
-
-            for (let ib = 0; ib < cardapioDados.cardapio[ia].categoria.length; ib++) {
-                /// Quantas categorias?
-
-                const dataCategoria = cardapioDados.cardapio[ia].categoria[ib];
-                // Imagem da categoria
-                if (dataCategoria.imgURL != null) {
-                    montarCardapio.push(<ItemImgEditor />);
-                }
-                // Nome da categoria
-                montarCardapio.push(<ItemTagEditor titulo={dataCategoria.titulo} />);
-
-                for (let ic = 0; ic < cardapioDados.cardapio[ia].categoria[ib].itens.length; ic++) {
-                    /// Quantos itens?
-
-                    const dataItens = cardapioDados.cardapio[ia].categoria[ib].itens[ic];
-                    // Itens
-                    montarCardapio.push(
-                        <Item titulo={dataItens.titulo} desc={dataItens.desc} valor={`R$ ${dataItens.valor}`}>
-                            <ItemButtons titulo={dataItens.titulo} desc={dataItens.desc} valor={`R$ ${dataItens.valor}`} />
-                        </Item>
-                    );
-
-                }
-                // Botão adicionar item (no final de todos itens)
-                montarCardapio.push(<BtnAddItem />);
-            }
-        }
-
-        return montarCardapio;
-    }
+    }, []);
+    // Obs: para executar o useEfect constante basta remover [] no final do evento
 
     return (
         <div className="editor">
             <div className="headerNav">
                 <button>
                     <span>Cardápio url: /{userId}</span>
-                    <img src={copyIcon} alt="" />
+                    <img src={copyIcon} alt="Copiar" />
                 </button>
             </div>
 
             <div className="pageEdit">
-                {componentsCardapio()}
+                {cardapioDados.map(a =>
+                    a.cardapio.map(b =>
+                        b.categoria.map(c =>
+                            <>
+                                <ItemImgEditor />
+                                <ItemTagEditor titulo={c.titulo} />
+                                {c.itens.map(d =>
+                                    <>
+                                        <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`}>
+                                            <ItemButtons titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`} />
+                                        </Item>
+                                    </>
+                                )}
+                                <BtnAddItem />
+                            </>
+                        )
+                    )
+                )}
             </div>
 
             <div className="floatButton">
                 <button title="Add categoria">
-                    <img src={addIcon} alt="" />
+                    <img src={addIcon} alt="Add" />
                 </button>
             </div>
         </div>
