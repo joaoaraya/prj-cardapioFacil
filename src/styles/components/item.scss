@@ -9,14 +9,22 @@
         grid-column: 1;
         grid-row: 1;
         font-weight: 700;
-        color: #FE8F00;
+        color: #fe8f00;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
     h2 {
         grid-column-start: span 2;
         grid-row: 2;
         font-weight: 400;
         margin-top: 8px;
-        color: #FFFFFF;
+        color: #ffffff;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
     span {
         grid-column: 2;
@@ -25,7 +33,7 @@
         padding: 4px 8px;
         border-radius: 4px;
         color: #131822;
-        background: #F08B0A;
+        background: #f08b0a;
     }
     .itemBtn {
         grid-column: span 2;
@@ -40,18 +48,17 @@
             font-size: 14px;
             padding: 8px 16px;
             border-radius: 8px;
-            color: #FFFFFF;
+            color: #ffffff;
             background: rgba(255, 255, 255, 0.2);
         }
         button:hover {
-            background: #F08B0A;
+            background: #f08b0a;
         }
         .btnDel:hover {
-            background: #EE4A34;
+            background: #ee4a34;
         }
     }
 }
-
 
 /* Tamanho Desktop */
 @media screen and (min-device-width: 768px), screen and (min-width: 768px) {
@@ -71,7 +78,7 @@
 }
 
 /* Tamanho Mobile */
-@media screen and (max-device-width: 768px), screen and (max-width: 768px) { 
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
     .item {
         padding: 12px;
 

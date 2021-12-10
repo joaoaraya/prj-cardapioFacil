@@ -37,16 +37,16 @@ export function ItemButtons({ titulo, desc, valor }: ItemProps) {
         <div className='itemBtn'>
             <button onClick={() => setModal(true)}>Editar</button>
             <button className="btnDel">Excluir</button>
+
             {showModal ?
                 <Modal>
-                    <form>
-                        <input type="text" placeholder="Produto" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
-                        <input type="text" placeholder="Descrição" value={getDesc} onInput={e => setDesc((e.target as HTMLTextAreaElement).value)} />
-                        <input type="text" placeholder="R$ 0,00" value={getValor} onInput={e => setValor((e.target as HTMLTextAreaElement).value)} />
-                        <button type='submit' className="btnSave">Salvar</button>
-                        <button className="btnCancel">Cancelar</button>
-                    </form>
+                    <input type="text" placeholder="Produto" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
+                    <input type="text" placeholder="Descrição" value={getDesc} onInput={e => setDesc((e.target as HTMLTextAreaElement).value)} />
+                    <input type="text" placeholder="R$ 0,00" value={getValor} onInput={e => setValor((e.target as HTMLTextAreaElement).value)} />
+                    <button type='submit' className="btnSave">Salvar</button>
+                    <button className="btnCancel">Cancelar</button>
                 </Modal> : null}
         </div>
+
     )
 }

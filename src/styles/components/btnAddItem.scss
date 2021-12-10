@@ -6,13 +6,15 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        width: 100%;
+        width: 70%;
+        margin: auto;
         padding: 12px;
         font-size: 14px;
         font-weight: 400;
         border-radius: 8px;
-        color: rgb(255,255,255);
+        color: rgb(255, 255, 255);
         background: #131822;
+        margin: auto;
 
         img {
             width: 16px;
@@ -20,6 +22,6 @@
         }
     }
     button:hover {
-        background: #FE8F00;
+        background: #fe8f00;
     }
 }

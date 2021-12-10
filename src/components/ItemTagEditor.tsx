@@ -16,6 +16,7 @@ type ItemProps = {
 
 export function ItemTagEditor({ titulo }: ItemProps) {
     const [showModal, setModal] = useState(false);
+    const [getTitulo, setTitulo] = useState(titulo);
 
     return (
         <div className='itemTagEditor'>
@@ -23,9 +24,10 @@ export function ItemTagEditor({ titulo }: ItemProps) {
             <button onClick={() => setModal(true)} title="Editar categoria">
                 <img src={editIcon} alt="editar" />
             </button>
+
             {showModal ?
                 <Modal>
-                    <input type="text" placeholder="Categoria" />
+                    <input type="text" placeholder="Categoria" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
                     <button type='submit' className="btnSave">Salvar</button>
                     <button className="btnCancel">Cancelar</button>
                 </Modal> : null}

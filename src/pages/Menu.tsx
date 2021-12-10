@@ -68,6 +68,7 @@ export function Menu() {
                                         <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`} />
                                     </>
                                 )}
+                                <br />
                             </>
                         )
                     )

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     top: 0;
@@ -11,6 +11,7 @@
     background: rgb(49, 51, 62);
     cursor: default;
     transition: none;
+    overflow: hidden;
 
     .container {
         margin: 20px;
@@ -53,8 +54,8 @@
                 height: auto;
                 padding: 16px;
                 font-size: 16px;
-                color: rgb(255,255,255);
-                background: rgba(0,0,0,0);
+                color: rgb(255, 255, 255);
+                background: rgba(0, 0, 0, 0);
                 border-radius: 8px;
             }
 

@@ -77,11 +77,6 @@ export function Editor() {
                 )}
             </div>
 
-            <div className="floatButton">
-                <button title="Add categoria">
-                    <img src={addIcon} alt="Add" />
-                </button>
-            </div>
         </div>
     )
 }

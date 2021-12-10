@@ -1,5 +1,5 @@
 .menu {
-    padding: 96px 16px 24px 16px;
+    padding: 96px 16px;
     max-width: 1024px;
     margin: auto; // centralizar a página após a largura maxima
 
@@ -15,12 +15,12 @@
 
     .floatButton {
         position: fixed;
-        left: 45vw;
-        bottom: 20px;
+        right: 40px;
+        bottom: 48px;
         border-radius: 50%;
         box-shadow: 4px 24px 60px rgba(0, 0, 0, 0.25);
         overflow-x: auto;
-        z-index: 1;
+        z-index: 5;
 
         button {
             padding: 20px;
