@@ -61,7 +61,7 @@ export function Menu() {
                     a.cardapio.map(b =>
                         b.categoria.map(c =>
                             <>
-                                <ItemImg />
+                                <ItemImg imgURL={c.imgURL} />
                                 <ItemTag titulo={c.titulo} />
                                 {c.itens.map(d =>
                                     <>

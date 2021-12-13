@@ -1,9 +1,12 @@
 .itemImgEditor {
-    background: #131822;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
+    background-color: rgb(19, 24, 34);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     button {
         margin: 32px;
@@ -16,17 +19,19 @@
         }
     }
     button:hover {
-        
         img {
             opacity: 1;
         }
+    }
+
+    &:hover {
+        filter: grayscale(100%);
     }
 }
 
 /* Tamanho Desktop */
 @media screen and (min-device-width: 768px), screen and (min-width: 768px) {
     .itemImgEditor {
-    
         button {
             width: 224px;
             height: 224px;
@@ -35,9 +40,8 @@
 }
 
 /* Tamanho Mobile */
-@media screen and (max-device-width: 768px), screen and (max-width: 768px) { 
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
     .itemImgEditor {
-    
         button {
             width: auto;
             height: auto;

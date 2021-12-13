@@ -1,10 +1,13 @@
 /* importar estilo */
 import '../styles/components/itemImg.scss';
 
-export function ItemImg() {
+type ImgProps = {
+    imgURL?: string;
+}
+
+export function ItemImg({ imgURL = "" }: ImgProps) {
     return (
-        <div className="itemImg">
-            {/*imagem*/}
+        <div className="itemImg" style={{ backgroundImage: `url("${imgURL}")` }}>
         </div>
     )
 }

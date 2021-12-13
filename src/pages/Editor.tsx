@@ -9,7 +9,6 @@ import { BtnAddItem } from '../components/BtnAddItem';
 
 /* Importar imagens */
 import linkIcon from '../assets/icons/link.svg'
-import addIcon from '../assets/icons/add.png'
 
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
@@ -61,7 +60,7 @@ export function Editor() {
                     a.cardapio.map(b =>
                         b.categoria.map(c =>
                             <>
-                                <ItemImgEditor />
+                                <ItemImgEditor imgURL={c.imgURL} />
                                 <ItemTagEditor titulo={c.titulo} />
                                 {c.itens.map(d =>
                                     <>
