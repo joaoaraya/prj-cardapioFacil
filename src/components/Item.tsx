@@ -43,10 +43,12 @@ export function ItemButtons({ titulo, desc, valor }: ItemProps) {
                     <input type="text" placeholder="Produto" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="Descrição" value={getDesc} onInput={e => setDesc((e.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="R$ 0,00" value={getValor} onInput={e => setValor((e.target as HTMLTextAreaElement).value)} />
-                    <button type='submit' className="btnSave">Salvar</button>
+                    <button
+                        className="btnSave">Salvar</button>
                     <button className="btnCancel">Cancelar</button>
-                </Modal> : null}
-        </div>
+                </Modal> : null
+            }
+        </div >
 
     )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { procurarCardapio } from '../functions/firestore'
+import { procurarCardapio } from '../functions/realtimeFirebase'
 
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
@@ -34,7 +34,7 @@ export function Editor() {
 
     useEffect(() => {
         (async () => {
-            const dadosDoFirebase: any = await procurarCardapio(userId, true); // Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor
+            const dadosDoFirebase: any = await procurarCardapio(userId, true); // , true   Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor
             const dados = []; // Cria um array
             dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
             setCardapioDados(dados); // Atualiza o estado do componente com os dados

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { procurarCardapio } from '../functions/firestore'
+import { procurarCardapio } from '../functions/realtimeFirebase'
 
 /* Importar Componetes da pagina */
 import { Item } from '../components/Item';
