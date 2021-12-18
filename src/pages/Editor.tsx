@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { procurarCardapio } from '../functions/realtimeFirebase'
+import { procurarCardapio } from '../functions/realtimeFirebase';
 
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
 import { ItemTagEditor } from '../components/ItemTagEditor';
 import { ItemImgEditor } from '../components/ItemImgEditor';
 import { BtnAddItem } from '../components/BtnAddItem';
+import { BtnAddTag } from '../components/BtnAddTag';
 
 /* Importar imagens */
 import linkIcon from '../assets/icons/link.svg'
@@ -17,9 +18,11 @@ import '../styles/pages/editor.scss'
 type cardapioDadosTypes = {
     cardapio: {
         categoria: {
+            show: boolean;
             titulo: string;
             imgURL: string;
             itens: {
+                show: boolean;
                 titulo: string;
                 desc: string;
                 valor: string;
@@ -39,8 +42,8 @@ export function Editor() {
             dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
             setCardapioDados(dados); // Atualiza o estado do componente com os dados
         })()
-    }, []);
-    // Obs: para executar o useEfect constante basta remover [] no final do evento
+    });
+    // OBS: executar o useEffect 1x = []); constante = basta remver o []
 
     const openUrl = () => {
         window.open(`/menu/${userId}`);
@@ -58,20 +61,32 @@ export function Editor() {
             <div className="pageEdit">
                 {cardapioDados.map(a =>
                     a.cardapio.map(b =>
-                        b.categoria.map(c =>
-                            <>
-                                <ItemImgEditor imgURL={c.imgURL} />
-                                <ItemTagEditor titulo={c.titulo} />
-                                {c.itens.map(d =>
-                                    <>
-                                        <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`}>
-                                            <ItemButtons titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`} />
-                                        </Item>
-                                    </>
-                                )}
-                                <BtnAddItem />
-                            </>
-                        )
+                        <>
+                            {b.categoria.map((c, cIndex) =>
+                                <>
+                                    {c.show ?
+                                        <>
+                                            <ItemImgEditor imgURL={c.imgURL} />
+                                            <ItemTagEditor user={userId as string} id={cIndex} titulo={c.titulo} />
+                                            {c.itens.map((d, dIndex) =>
+                                                <>
+                                                    {d.show ?
+                                                        <>
+                                                            <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`}>
+                                                                <ItemButtons user={userId as string} categoriaId={cIndex} id={dIndex} titulo={d.titulo} desc={d.desc} valor={d.valor} />
+                                                            </Item>
+                                                        </>
+                                                        : <></>
+                                                    }
+                                                </>
+                                            )}
+                                            <BtnAddItem user={userId as string} categoriaId={cIndex} />
+                                        </>
+                                        : <></>
+                                    }
+                                </>
+                            )}< BtnAddTag user={userId as string} />
+                        </>
                     )
                 )}
             </div>

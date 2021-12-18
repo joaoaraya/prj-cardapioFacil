@@ -18,9 +18,11 @@ import '../styles/pages/menu.scss'
 type cardapioDadosTypes = {
     cardapio: {
         categoria: {
+            show: boolean;
             titulo: string;
             imgURL: string;
             itens: {
+                show: boolean;
                 titulo: string;
                 desc: string;
                 valor: string;
@@ -49,7 +51,7 @@ export function Menu() {
             }
         })()
     }, []);
-    // Obs: para executar o useEfect constante basta remover [] no final do evento
+    // OBS: executar o useEffect: 1x = []); constante = basta remver o []
 
     return (
         <div className="menu">
@@ -61,14 +63,24 @@ export function Menu() {
                     a.cardapio.map(b =>
                         b.categoria.map(c =>
                             <>
-                                <ItemImg imgURL={c.imgURL} />
-                                <ItemTag titulo={c.titulo} />
-                                {c.itens.map(d =>
+                                {c.show ?
                                     <>
-                                        <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`} />
+                                        {c.imgURL != "" ? <ItemImg imgURL={c.imgURL} /> : <></>}
+                                        <ItemTag titulo={c.titulo} />
+                                        {c.itens.map(d =>
+                                            <>
+                                                {d.show ?
+                                                    <>
+                                                        <Item titulo={d.titulo} desc={d.desc} valor={`R$ ${d.valor}`} />
+                                                    </>
+                                                    : <></>
+                                                }
+                                            </>
+                                        )}
+                                        <br />
                                     </>
-                                )}
-                                <br />
+                                    : <></>
+                                }
                             </>
                         )
                     )

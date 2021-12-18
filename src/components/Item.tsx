@@ -1,13 +1,20 @@
 /* Importar dependencias */
-import { useState, ReactNode } from 'react';
+import { useState, ReactNode, useEffect } from 'react';
+import { atualizarItem, excluirItem } from '../functions/realtimeFirebase';
 
 /* importar estilo */
 import '../styles/components/item.scss'
+
+/* Importar imagens */
+import delIcon from '../assets/icons/delete.png'
 
 /* Componentes */
 import { Modal } from '../components/Modal'
 
 type ItemProps = {
+    user?: string;
+    categoriaId?: number;
+    id?: number;
     titulo?: string;
     desc?: string;
     valor?: string;
@@ -27,28 +34,67 @@ export function Item({ titulo = "titulo", desc = "desc", valor = "0.00", childre
     )
 }
 
-export function ItemButtons({ titulo, desc, valor }: ItemProps) {
-    const [showModal, setModal] = useState(false);
+export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: ItemProps) {
+    // Estados das variaveis
+    const [showModalEdit, setModalEdit] = useState(false);
+    const [showModalDel, setModalDel] = useState(false);
+    const [disabled, setDisabled] = useState(true);
     const [getTitulo, setTitulo] = useState(titulo);
     const [getDesc, setDesc] = useState(desc);
     const [getValor, setValor] = useState(valor);
 
+    // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
+    useEffect(() => {
+        if (getTitulo != '' && getDesc != '' && getValor != '') {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    });
+
+    // Funções
+    const salvar = () => {
+        atualizarItem(user, categoriaId, id, getTitulo, getDesc, getValor);
+    }
+    const excluir = () => {
+        excluirItem(user, categoriaId, id)
+    }
+    const setReset = () => {
+        setTitulo(titulo);
+        setDesc(desc);
+        setValor(valor);
+    }
+    const cancelar = () => {
+        // Fechar modal e redefinir variaveis
+        setModalEdit(false);
+        setModalDel(false);
+        setReset();
+    }
+
+    // Virtual DOM
     return (
         <div className='itemBtn'>
-            <button onClick={() => setModal(true)}>Editar</button>
-            <button className="btnDel">Excluir</button>
+            <button onClick={() => setModalEdit(true)}>Editar</button>
+            <button onClick={() => setModalDel(true)} className="btnDel">Excluir</button>
 
-            {showModal ?
+            {showModalEdit ?
                 <Modal>
-                    <input type="text" placeholder="Produto" value={getTitulo} onInput={e => setTitulo((e.target as HTMLTextAreaElement).value)} />
-                    <input type="text" placeholder="Descrição" value={getDesc} onInput={e => setDesc((e.target as HTMLTextAreaElement).value)} />
-                    <input type="text" placeholder="R$ 0,00" value={getValor} onInput={e => setValor((e.target as HTMLTextAreaElement).value)} />
-                    <button
-                        className="btnSave">Salvar</button>
-                    <button className="btnCancel">Cancelar</button>
+                    <input type="text" placeholder="Produto" value={getTitulo} onInput={txt => setTitulo((txt.target as HTMLTextAreaElement).value)} />
+                    <input type="text" placeholder="Descrição" value={getDesc} onInput={txt => setDesc((txt.target as HTMLTextAreaElement).value)} />
+                    <input type="text" placeholder="R$ 0,00" value={getValor} onInput={txt => setValor((txt.target as HTMLTextAreaElement).value)} />
+                    <button type='button' onClick={salvar} className="btnSave" disabled={disabled}>Salvar</button>
+                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
+                </Modal> : null
+            }
+            {showModalDel ?
+                <Modal>
+                    <img src={delIcon} alt="delete" />
+                    <h1 className='del'>Remover item <ins>{getTitulo}</ins> ?</h1>
+                    <h2>A ação não poderá ser desfeita!</h2>
+                    <button type='button' onClick={excluir} className="btnSave del">Excluir</button>
+                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
                 </Modal> : null
             }
         </div >
-
     )
 }

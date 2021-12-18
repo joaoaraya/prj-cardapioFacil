@@ -87,6 +87,12 @@
                 grid-column: 2;
                 grid-row: auto;
             }
+
+            .btnAddTag {
+                grid-column: span 2;
+                grid-row: auto;
+                align-self: start;
+            }
         }
     }
 }

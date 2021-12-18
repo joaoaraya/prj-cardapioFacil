@@ -7,6 +7,11 @@
     align-items: center;
     flex-wrap: wrap;
 
+    h2 {
+        font-weight: 400;
+        margin-top: 8px;
+        color: #ffffff;
+    }
     span {
         font-size: 16px;
         color: #ffffff;
@@ -15,19 +20,50 @@
             text-transform: uppercase;
         }
     }
-    button {
-        width: 32px;
-        height: 32px;
-        padding: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
+    .actionButtons {
+        display: flex;
+        gap: 16px;
 
-        img {
-            width: 16px;
-            height: 16px;
+        button {
+            width: 32px;
+            height: 32px;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+            &:hover {
+                background-color: #f08b0a;
+            }
+            &:hover.btnDel {
+                background: #ee4a34;
+            }
         }
     }
-    button:hover {
-        background-color: #f08b0a;
+}
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    .itemTagEditor {
+        h1 {
+            font-size: 20px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+    }
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
+    .itemTagEditor {
+        h1 {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: 14px;
+        }
     }
 }
