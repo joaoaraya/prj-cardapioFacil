@@ -23,34 +23,49 @@ type ItemProps = {
 export function BtnAddItem({ user, categoriaId }: ItemProps) {
     // Estados das variaveis
     const [showModal, setModal] = useState(false);
-    const [disabled, setDisabled] = useState(true);
     const [getTitulo, setTitulo] = useState('');
     const [getDesc, setDesc] = useState('');
     const [getValor, setValor] = useState('');
+    const [btnSaveOff, setBtnSaveOff] = useState(true);
+    const [btnSaveTxt, setBtnSaveTxt] = useState('Salvar');
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
         if (getTitulo != '' && getDesc != '' && getValor != '') {
-            setDisabled(false);
+            setBtnSaveOff(false);
         } else {
-            setDisabled(true);
+            setBtnSaveOff(true);
         }
     });
 
     // Funções
-    const salvar = () => {
-        if (!disabled) {
-            criarItem(user, categoriaId, getTitulo, getDesc, getValor);
+    const salvar = async () => {
+        setBtnSaveTxt('Salvando...');
+
+        const resposta: any = await criarItem(user, categoriaId, getTitulo, getDesc, getValor);
+        try {
+            if (resposta == 'sucess') {
+                setBtnSaveTxt('Salvo!');
+                setBtnSaveOff(false);
+                fechar();
+            } else {
+                setBtnSaveTxt('Não salvo!');
+            }
+        }
+        catch (e) {
+            setBtnSaveTxt('Não salvo!');
+            console.error(e);
         }
     }
-    const setReset = () => {
+    const setDefault = () => {
         setTitulo('');
         setDesc('');
         setValor('');
+        setBtnSaveTxt('Salvar');
     }
-    const cancelar = () => {
+    const fechar = () => {
         setModal(false);
-        setReset();
+        setDefault();
     }
 
     // Virtual DOM
@@ -65,9 +80,10 @@ export function BtnAddItem({ user, categoriaId }: ItemProps) {
                     <input type="text" placeholder="Produto" value={getTitulo} onInput={txt => setTitulo((txt.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="Descrição" value={getDesc} onInput={txt => setDesc((txt.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="R$ 0,00" value={getValor} onInput={txt => setValor((txt.target as HTMLTextAreaElement).value)} />
-                    <button type='button' onClick={salvar} className="btnSave" disabled={disabled}>Salvar</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
-                </Modal> : null}
+                    <button type='button' onClick={salvar} className="btnSave" disabled={btnSaveOff}>{btnSaveTxt}</button>
+                    <button type='button' onClick={fechar} className="btnClose">Voltar</button>
+                </Modal> : null
+            }
         </div>
     )
 }

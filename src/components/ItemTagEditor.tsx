@@ -23,33 +23,44 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
     // Estados das variaveis
     const [showModalEdit, setModalEdit] = useState(false);
     const [showModalDel, setModalDel] = useState(false);
-    const [disabled, setDisabled] = useState(true);
     const [getTitulo, setTitulo] = useState(titulo);
+    const [btnSaveOff, setBtnSaveOff] = useState(true);
+    const [btnSaveTxt, setBtnSaveTxt] = useState('Salvar');
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
         if (getTitulo != '') {
-            setDisabled(false);
+            setBtnSaveOff(false);
         } else {
-            setDisabled(true);
+            setBtnSaveOff(true);
         }
     });
 
     // Funções
-    const salvar = () => {
-        atualizarCategoria(user, id, getTitulo);
+    const salvar = async () => {
+        setBtnSaveTxt('Salvando...');
+
+        const resposta: any = await atualizarCategoria(user, id, getTitulo);
+        try {
+            resposta == 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
+        }
+        catch (e) {
+            setBtnSaveTxt('Não salvo!');
+            console.error(e);
+        }
     }
     const excluir = () => {
         excluirCategoria(user, id);
     }
-    const setReset = () => {
+    const setDefault = () => {
         setTitulo(titulo);
+        setBtnSaveTxt('Salvar');
     }
-    const cancelar = () => {
+    const fechar = () => {
         // Fechar modal e redefinir variaveis
         setModalEdit(false);
         setModalDel(false);
-        setReset();
+        setDefault();
     }
 
     // Virtual DOM
@@ -68,8 +79,8 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
             {showModalEdit ?
                 <Modal>
                     <input type="text" placeholder="Categoria" value={getTitulo} onInput={txt => setTitulo((txt.target as HTMLTextAreaElement).value)} />
-                    <button type='button' onClick={salvar} className="btnSave" disabled={disabled}>Salvar</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
+                    <button type='button' onClick={salvar} className="btnSave" disabled={btnSaveOff}>{btnSaveTxt}</button>
+                    <button type='button' onClick={fechar} className="btnClose">Voltar</button>
                 </Modal> : null
             }
             {showModalDel ?
@@ -78,7 +89,7 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
                     <h1 className='del'>Remover categoria <ins>{getTitulo}</ins> ?</h1>
                     <h2>Todos os itens serão apagados juntos!</h2>
                     <button type='button' onClick={excluir} className="btnSave del">Excluir</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
+                    <button type='button' onClick={fechar} className="btnClose">Cancelar</button>
                 </Modal> : null
             }
         </div>

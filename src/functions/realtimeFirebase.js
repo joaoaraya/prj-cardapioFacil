@@ -98,47 +98,48 @@ export const criarCategoria = async (userId, getTitulo) => {
             create[`users/${userId}/cardapio/0/categoria/${categoriaId}`] = newCategoria;
             update(dbRef, create);
 
+            return 'sucess';
+
         } catch (e) {
             console.error("Erro ao adicionar: ", e);
+            return 'error';
         }
     }
-    // Objeto (cardápio) não encontrado
     else {
-        console.error("Erro ao encontrar");
+        console.error("Objeto (cardápio) não encontrado");
+        return 'error';
     }
 }
 
 // Atualizar categoria (no cardapio) no firebase
 export const atualizarCategoria = async (userId, categoriaId, getTitulo) => {
 
-    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}`); // Local que será atualizado
+    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}`);
     const dados = { titulo: getTitulo }; // Dado que será atualizado
 
-    const atualizar = await update(caminho, dados);
+    await update(caminho, dados);
     try {
-        // Dados atualizados com sucesso
-        const inserirDados = atualizar;
-        console.log("Categoria atualizada: ", inserirDados);
-    } catch (e) {
-        // Erro ao atualizar dados
+        return 'sucess';
+    }
+    catch (e) {
         console.error("Erro ao atualizar: ", e);
+        return 'error';
     }
 }
 
 // Exluir categoria (no cardapio) no firebase
 export const excluirCategoria = async (userId, categoriaId) => {
 
-    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}`); // Local que será atualizado
-    const dados = { show: false }; // desabilitar
+    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}`);
+    const dados = { show: false }; // Desabilitar
 
-    const atualizar = await update(caminho, dados);
+    await update(caminho, dados);
     try {
-        // Dados desabilitados com sucesso
-        const inserirDados = atualizar;
-        console.log("Categoria atualizada: ", inserirDados);
-    } catch (e) {
-        // Erro ao atualizar dados
-        console.error("Erro ao atualizar: ", e);
+        return 'sucess';
+    }
+    catch (e) {
+        console.error("Erro ao desabilitar: ", e);
+        return 'error';
     }
 }
 
@@ -153,7 +154,6 @@ export const criarItem = async (userId, categoriaId, getTitulo, getDesc, getValo
     if (docSnap.exists()) {
 
         const result = docSnap.val();
-
         try {
             const itemId = result.itens.length; // conta quantos arrays existem (e atribui o valor parao atual (ex: de 0-3 são 4 valores))
             const newItem = { show: true, titulo: getTitulo, desc: getDesc, valor: getValor };
@@ -162,13 +162,16 @@ export const criarItem = async (userId, categoriaId, getTitulo, getDesc, getValo
             create[`users/${userId}/cardapio/0/categoria/${categoriaId}/itens/${itemId}`] = newItem;
             update(dbRef, create);
 
-        } catch (e) {
-            console.error("Erro ao adicionar: ", e);
+            return 'sucess';
+        }
+        catch (e) {
+            console.error("Erro ao adicionar item: ", e);
+            return 'error';
         }
     }
-    // Objeto (cardápio) não encontrado
     else {
-        console.error("Erro ao encontrar");
+        console.error("Objeto (cardápio) não encontrado");
+        return 'error';
     }
 }
 
@@ -178,30 +181,28 @@ export const atualizarItem = async (userId, categoriaId, itemId, getTitulo, getD
     const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}/itens/${itemId}`); // Local que será atualizado
     const dados = { titulo: getTitulo, desc: getDesc, valor: getValor }; // Dados que serão atualizado
 
-    const atualizar = await update(caminho, dados);
+    await update(caminho, dados);
     try {
-        // Dados atualizados com sucesso
-        const inserirDados = atualizar;
-        console.log("Categoria atualizada: ", inserirDados);
-    } catch (e) {
-        // Erro ao atualizar dados
+        return 'sucess';
+    }
+    catch (e) {
         console.error("Erro ao atualizar: ", e);
+        return 'error';
     }
 }
 
 // Exluir item (na categoria) no firebase
 export const excluirItem = async (userId, categoriaId, itemId) => {
 
-    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}/itens/${itemId}`); // Local que será atualizado
-    const dados = { show: false }; // desabilitar
+    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}/itens/${itemId}`);
+    const dados = { show: false }; // Desabilitar
 
-    const atualizar = await update(caminho, dados);
+    await update(caminho, dados);
     try {
-        // Dados desabilitados com sucesso
-        const inserirDados = atualizar;
-        console.log("Categoria atualizada: ", inserirDados);
-    } catch (e) {
-        // Erro ao atualizar dados
-        console.error("Erro ao atualizar: ", e);
+        return 'sucess';
+    }
+    catch (e) {
+        console.error("Erro ao desabilitar: ", e);
+        return 'error';
     }
 }

@@ -38,37 +38,48 @@ export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: Item
     // Estados das variaveis
     const [showModalEdit, setModalEdit] = useState(false);
     const [showModalDel, setModalDel] = useState(false);
-    const [disabled, setDisabled] = useState(true);
     const [getTitulo, setTitulo] = useState(titulo);
     const [getDesc, setDesc] = useState(desc);
     const [getValor, setValor] = useState(valor);
+    const [btnSaveOff, setBtnSaveOff] = useState(true);
+    const [btnSaveTxt, setBtnSaveTxt] = useState('Salvar');
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
         if (getTitulo != '' && getDesc != '' && getValor != '') {
-            setDisabled(false);
+            setBtnSaveOff(false);
         } else {
-            setDisabled(true);
+            setBtnSaveOff(true);
         }
     });
 
     // Funções
-    const salvar = () => {
-        atualizarItem(user, categoriaId, id, getTitulo, getDesc, getValor);
+    const salvar = async () => {
+        setBtnSaveTxt('Salvando...');
+
+        const resposta: any = await atualizarItem(user, categoriaId, id, getTitulo, getDesc, getValor);
+        try {
+            resposta == 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
+        }
+        catch (e) {
+            setBtnSaveTxt('Não salvo!');
+            console.error(e);
+        }
     }
     const excluir = () => {
         excluirItem(user, categoriaId, id)
     }
-    const setReset = () => {
+    const setDefault = () => {
         setTitulo(titulo);
         setDesc(desc);
         setValor(valor);
+        setBtnSaveTxt('Salvar');
     }
-    const cancelar = () => {
+    const fechar = () => {
         // Fechar modal e redefinir variaveis
         setModalEdit(false);
         setModalDel(false);
-        setReset();
+        setDefault();
     }
 
     // Virtual DOM
@@ -82,8 +93,8 @@ export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: Item
                     <input type="text" placeholder="Produto" value={getTitulo} onInput={txt => setTitulo((txt.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="Descrição" value={getDesc} onInput={txt => setDesc((txt.target as HTMLTextAreaElement).value)} />
                     <input type="text" placeholder="R$ 0,00" value={getValor} onInput={txt => setValor((txt.target as HTMLTextAreaElement).value)} />
-                    <button type='button' onClick={salvar} className="btnSave" disabled={disabled}>Salvar</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
+                    <button type='button' onClick={salvar} className="btnSave" disabled={btnSaveOff}>{btnSaveTxt}</button>
+                    <button type='button' onClick={fechar} className="btnClose">Voltar</button>
                 </Modal> : null
             }
             {showModalDel ?
@@ -92,7 +103,7 @@ export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: Item
                     <h1 className='del'>Remover item <ins>{getTitulo}</ins> ?</h1>
                     <h2>A ação não poderá ser desfeita!</h2>
                     <button type='button' onClick={excluir} className="btnSave del">Excluir</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
+                    <button type='button' onClick={fechar} className="btnClose">Cancelar</button>
                 </Modal> : null
             }
         </div >

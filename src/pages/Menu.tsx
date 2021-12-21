@@ -41,13 +41,16 @@ export function Menu() {
     useEffect(() => {
         (async () => {
             const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase, + envia o uuid
-
-            if (dadosDoFirebase == 404) {
-                navigate('/'); // MUDAR PARA UMA PAGINA "CARDAPIO NAO ENCONTRADO"
-            } else {
-                const dados = []; // Cria um array
-                dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
-                setCardapioDados(dados); // Atualiza o estado do componente com os dados
+            try {
+                if (dadosDoFirebase == 404) {
+                    navigate('/'); // MUDAR PARA UMA PAGINA "CARDAPIO NAO ENCONTRADO"
+                } else {
+                    const dados = []; // Cria um array
+                    dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
+                    setCardapioDados(dados); // Atualiza o estado do componente com os dados
+                }
+            } catch (e) {
+                console.log(e); // Ocorreu um erro;
             }
         })()
     }, []);
@@ -56,7 +59,7 @@ export function Menu() {
     // Compartilhar URL
     const shareData = {
         title: 'Cardápio Fácil',
-        text: 'Crie e compartilhe seu cardápio fácil, rápido e grátis',
+        text: 'Monte e compartilhe seu cardápio fácil, rápido e de graça!',
         url: getUrl
     }
     const compartilharCardapio = () => {

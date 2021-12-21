@@ -20,30 +20,45 @@ type ItemProps = {
 export function BtnAddTag({ user }: ItemProps) {
     // Estados das variaveis
     const [showModal, setModal] = useState(false);
-    const [disabled, setDisabled] = useState(true);
     const [getTitulo, setTitulo] = useState('');
+    const [btnSaveOff, setBtnSaveOff] = useState(true);
+    const [btnSaveTxt, setBtnSaveTxt] = useState('Salvar');
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
         if (getTitulo != '') {
-            setDisabled(false);
+            setBtnSaveOff(false);
         } else {
-            setDisabled(true);
+            setBtnSaveOff(true);
         }
     });
 
     // Funções
-    const salvar = () => {
-        if (!disabled) {
-            criarCategoria(user, getTitulo);
+    const salvar = async () => {
+        setBtnSaveTxt('Salvando...');
+
+        const resposta: any = await criarCategoria(user, getTitulo);
+        try {
+            if (resposta == 'sucess') {
+                setBtnSaveTxt('Salvo!');
+                setBtnSaveOff(false);
+                fechar();
+            } else {
+                setBtnSaveTxt('Não salvo!');
+            }
+        }
+        catch (e) {
+            setBtnSaveTxt('Não salvo!');
+            console.error(e);
         }
     }
-    const setReset = () => {
+    const setDefault = () => {
         setTitulo('');
+        setBtnSaveTxt('Salvar');
     }
-    const cancelar = () => {
+    const fechar = () => {
         setModal(false);
-        setReset();
+        setDefault();
     }
 
     // Virtual DOM
@@ -58,9 +73,10 @@ export function BtnAddTag({ user }: ItemProps) {
             {showModal ?
                 <Modal>
                     <input type="text" placeholder="Categoria" value={getTitulo} onInput={txt => setTitulo((txt.target as HTMLTextAreaElement).value)} />
-                    <button type='button' onClick={salvar} className="btnSave" disabled={disabled}>Salvar</button>
-                    <button type='button' onClick={cancelar} className="btnCancel">Cancelar</button>
-                </Modal> : null}
+                    <button type='button' onClick={salvar} className="btnSave" disabled={btnSaveOff}>{btnSaveTxt}</button>
+                    <button type='button' onClick={fechar} className="btnClose">Voltar</button>
+                </Modal> : null
+            }
         </div>
     )
 }

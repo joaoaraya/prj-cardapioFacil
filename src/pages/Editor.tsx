@@ -35,16 +35,21 @@ export function Editor() {
     const userId = localStorage.getItem('@cardapio-facil/userid');
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
+    // Quando não estiver logado, voltar parao início
     if (!userId) {
         window.location.href = "/";
     }
 
     useEffect(() => {
         (async () => {
-            const dadosDoFirebase: any = await procurarCardapio(userId, true); // , true   Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor
-            const dados = []; // Cria um array
-            dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
-            setCardapioDados(dados); // Atualiza o estado do componente com os dados
+            const dadosDoFirebase: any = await procurarCardapio(userId, true); // Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor
+            try {
+                const dados = []; // Cria um array
+                dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase dentro do Array
+                setCardapioDados(dados); // Atualiza o estado do componente com os dados
+            } catch (e) {
+                console.log(e); // Ocorreu um erro
+            }
         })()
     });
     // OBS: executar o useEffect 1x = []); constante = basta remver o []
