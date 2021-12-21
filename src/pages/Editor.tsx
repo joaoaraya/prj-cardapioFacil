@@ -35,6 +35,10 @@ export function Editor() {
     const userId = localStorage.getItem('@cardapio-facil/userid');
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
+    if (!userId) {
+        window.location.href = "/";
+    }
+
     useEffect(() => {
         (async () => {
             const dadosDoFirebase: any = await procurarCardapio(userId, true); // , true   Executa a função para procurar os dados no firebase, + envia o uuid e diz q é o editor

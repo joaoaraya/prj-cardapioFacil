@@ -58,7 +58,7 @@ export function BtnAddItem({ user, categoriaId }: ItemProps) {
         <div className="btnAddItem">
             <button onClick={() => setModal(true)}>
                 <img src={addIcon} alt="" />
-                ADD ITEM
+                NOVO ITEM
             </button>
             {showModal ?
                 <Modal>

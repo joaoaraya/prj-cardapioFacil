@@ -1,5 +1,5 @@
 .menu {
-    padding: 96px 16px;
+    padding: 96px 16px 142px 16px;
     max-width: 1024px;
     margin: auto; // centralizar a página após a largura maxima
 
@@ -13,16 +13,41 @@
         padding: 16px 0;
     }
 
-    .floatButton {
+    .btnFloatMini {
+        position: fixed;
+        right: 52px;
+        bottom: 140px;
+        border-radius: 50%;
+        box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
+        overflow-x: auto;
+        z-index: 5;
+
+        .btnShare {
+            width: 48px;
+            height: 48px;
+            background-color: #6e6e80;
+
+            img {
+                margin: auto;
+                width: 24px;
+                height: 24px;
+            }
+            &:hover {
+                background-color: #44abca;
+            }
+        }
+    }
+
+    .btnFloatBig {
         position: fixed;
         right: 40px;
         bottom: 48px;
         border-radius: 50%;
-        box-shadow: 4px 24px 60px rgba(0, 0, 0, 0.25);
+        box-shadow: 4px 16px 20px rgba(0, 0, 0, 0.25);
         overflow-x: auto;
         z-index: 5;
 
-        button {
+        .btnNew {
             padding: 20px;
             width: 72px;
             height: 72px;
@@ -32,9 +57,9 @@
                 width: 32px;
                 height: 32px;
             }
-        }
-        button:hover {
-            background-color: #cc6708;
+            &:hover {
+                background-color: #cc6708;
+            }
         }
     }
 }

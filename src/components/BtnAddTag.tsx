@@ -52,7 +52,7 @@ export function BtnAddTag({ user }: ItemProps) {
             <br />
             <button onClick={() => setModal(true)}>
                 <img src={addIcon} alt="" />
-                ADD CATEGORIA
+                NOVA CATEGORIA
             </button>
             <br />
             {showModal ?

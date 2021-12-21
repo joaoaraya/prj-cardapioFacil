@@ -9,6 +9,7 @@ import { ItemImg } from '../components/ItemImg';
 import { BarSearch } from '../components/BarSearch';
 
 /* Importar imagens */
+import shareIcon from '../assets/icons/share.png'
 import addIcon from '../assets/icons/add.png'
 
 /* Importar estilo da página */
@@ -34,8 +35,7 @@ type cardapioDadosTypes = {
 export function Menu() {
     const getUrl = window.location.pathname; // Ler Url atual
     const userId = getUrl.replace('/menu/', ''); // Obter somente o ID e apagar o restante da Url
-    const navigate = useNavigate();
-
+    const navigate = useNavigate(); // Usar navigate
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
     useEffect(() => {
@@ -52,6 +52,21 @@ export function Menu() {
         })()
     }, []);
     // OBS: executar o useEffect: 1x = []); constante = basta remver o []
+
+    // Compartilhar URL
+    const shareData = {
+        title: 'Cardápio Fácil',
+        text: 'Crie e compartilhe seu cardápio fácil, rápido e grátis',
+        url: getUrl
+    }
+    const compartilharCardapio = () => {
+        navigator.share(shareData);
+    }
+
+    // Voltar para o início
+    const criarNovoCardapio = () => {
+        navigate('/');
+    }
 
     return (
         <div className="menu">
@@ -87,9 +102,15 @@ export function Menu() {
                 )}
             </div>
 
-            <div className="floatButton">
-                <button title="Crie seu cardápio">
-                    <img src={addIcon} alt="" />
+            <div className="btnFloatMini">
+                <button onClick={compartilharCardapio} className="btnShare" title="Compartilhar">
+                    <img src={shareIcon} alt="share" />
+                </button>
+            </div>
+
+            <div className="btnFloatBig">
+                <button onClick={criarNovoCardapio} className="btnNew" title="Crie seu cardápio">
+                    <img src={addIcon} alt="add" />
                 </button>
             </div>
         </div>

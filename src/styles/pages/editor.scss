@@ -33,31 +33,6 @@
             background: rgb(204, 103, 8);
         }
     }
-
-    .floatButton {
-        position: fixed;
-        left: 45vw;
-        bottom: 20px;
-        border-radius: 50%;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-        overflow-x: auto;
-        z-index: 1;
-
-        button {
-            padding: 20px;
-            width: 72px;
-            height: 72px;
-            background-color: rgb(254, 143, 0);
-
-            img {
-                width: 32px;
-                height: 32px;
-            }
-        }
-        button:hover {
-            background-color: rgb(206, 104, 9);
-        }
-    }
 }
 
 /* Tamanho Desktop */
