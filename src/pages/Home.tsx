@@ -1,5 +1,5 @@
 /* Importar Funções */
-import { logInGoogle, logOut } from '../functions/googleAuth'
+import { logInGoogle } from '../functions/googleAuth'
 
 /* Importar Imagens */
 import homeImg from '../assets/images/home.svg';
@@ -8,24 +8,26 @@ import googleIcon from '../assets/icons/google.svg';
 /* Importar estilo da página */
 import '../styles/pages/home.scss';
 
-const user = localStorage.getItem('@cardapio-facil/userid'); //Obeter informações do usuário no localstorage (cookie)
-const goTo = window.location;
+export function Home() {
+    const user = localStorage.getItem('@cardapio-facil/userid'); //Obeter informações do usuário no localstorage (cookie)
+    const goTo = window.location;
 
-const entrar = async () => {
-    if (!user) {
-        await logInGoogle();
-        try {
+    /* Funções */
+    const entrar = async () => {
+        if (!user) {
+            await logInGoogle();
+            try {
+                goTo.href = "/menu/edit";
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+        else {
             goTo.href = "/menu/edit";
-        } catch (e) {
-            console.log(e);
         }
     }
-    else {
-        goTo.href = "/menu/edit";
-    }
-}
 
-export function Home() {
     return (
         <div className='home'>
             <aside>
@@ -39,7 +41,6 @@ export function Home() {
                         <img src={googleIcon} alt="" />
                         Entrar com o Google
                     </button>
-                    <button onClick={logOut}>sair</button>
                 </div>
             </main>
         </div>

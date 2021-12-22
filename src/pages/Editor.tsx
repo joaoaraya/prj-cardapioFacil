@@ -1,5 +1,7 @@
+/* Importar Funções */
 import { useEffect, useState } from 'react';
 import { procurarCardapio } from '../functions/realtimeFirebase';
+import { logOut } from '../functions/googleAuth'
 
 /* Importar Componetes da pagina */
 import { Item, ItemButtons } from '../components/Item';
@@ -9,7 +11,9 @@ import { BtnAddItem } from '../components/BtnAddItem';
 import { BtnAddTag } from '../components/BtnAddTag';
 
 /* Importar imagens */
+import Logo from '../assets/images/logo.png'
 import linkIcon from '../assets/icons/link.svg'
+import logOffIcon from '../assets/icons/exit.png';
 
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'
@@ -33,9 +37,10 @@ type cardapioDadosTypes = {
 
 export function Editor() {
     const userId = localStorage.getItem('@cardapio-facil/userid');
+    const userPic = localStorage.getItem('@cardapio-facil/userpic');
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
-    // Quando não estiver logado, voltar parao início
+    /* Quando não estiver logado, voltar parao início */
     if (!userId) {
         window.location.href = "/";
     }
@@ -47,8 +52,9 @@ export function Editor() {
                 const dados = []; // Cria um array
                 dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase dentro do Array
                 setCardapioDados(dados); // Atualiza o estado do componente com os dados
-            } catch (e) {
-                console.log(e); // Ocorreu um erro
+            }
+            catch (e) {
+                console.error(e);
             }
         })()
     });
@@ -61,10 +67,21 @@ export function Editor() {
     return (
         <div className="editor">
             <div className="headerNav">
-                <button onClick={openUrl}>
-                    <span>Cardápio url: /{userId}</span>
+                <div className="appLogo">
+                    <img src={Logo} alt="Logo" title="Cardápio Fácil" />
+                </div>
+
+                <button onClick={openUrl} className="openLink">
+                    <span>Visualizar cardápio</span>
                     <img src={linkIcon} alt="Copiar" />
                 </button>
+
+                <div className="userManager">
+                    <img className="profilePic" src={userPic as string} alt="Perfil" />
+                    <button className="btnLogOut" onClick={logOut} title="Sair">
+                        <img src={logOffIcon} alt="Sair" />
+                    </button>
+                </div>
             </div>
 
             <div className="pageEdit">

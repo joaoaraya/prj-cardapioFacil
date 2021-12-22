@@ -1,6 +1,6 @@
 /* Importar dependencias */
 import app from '../services/firebase'
-import { signInWithPopup, signOut, GoogleAuthProvider, getAuth, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup, signOut, GoogleAuthProvider, getAuth } from 'firebase/auth';
 
 const auth = getAuth(app);
 const google = new GoogleAuthProvider();
@@ -17,8 +17,10 @@ export const logInGoogle = async () => {
         // Salvar informações do usuário no local (cookie)
         // (KEY ou nome do APP-SITE '/' dado da variavel)
         const user = result.user;
+
         localStorage.setItem('@cardapio-facil/username', user.displayName);
         localStorage.setItem('@cardapio-facil/userid', user.uid);
+        localStorage.setItem('@cardapio-facil/userpic', user.photoURL)
 
         // setLoginStatus(); // Mostrar se logou
 
@@ -40,8 +42,10 @@ export const logOut = async () => {
         // Desconectado da conta e apagar variaveis locais
         localStorage.removeItem('@cardapio-facil/username');
         localStorage.removeItem('@cardapio-facil/userid');
+        localStorage.removeItem('@cardapio-facil/userpic');
 
         //setLoginStatus(); // Mostrar se deslogou
+
     } catch (error) {
         // ocorreu um erro ao sair
     }

@@ -5,7 +5,9 @@ const db = getDatabase(app);
 const dataAtual = new Date().toISOString();
 let cardapioDados = {};
 
+//
 /* ------------------- CARDÁPIOS ------------------- */
+//
 
 // Procurar objeto (cardapio) no firebase
 export const procurarCardapio = async (getUserId, getEditor = false) => {
@@ -68,7 +70,9 @@ export const novoCardapio = async (userId) => {
     }
 }
 
+//
 /* ------------------- CATEGORIAS ------------------- */
+//
 
 // Procurar e Criar categoria (no cardapio) no firebase
 export const criarCategoria = async (userId, getTitulo) => {
@@ -79,7 +83,6 @@ export const criarCategoria = async (userId, getTitulo) => {
     if (docSnap.exists()) {
 
         const result = docSnap.val();
-
         try {
             const categoriaId = result.categoria.length; // conta quantos arrays existem (e atribui o valor parao atual (ex: de 0-3 são 4 valores))
             const newCategoria = {
@@ -94,7 +97,6 @@ export const criarCategoria = async (userId, getTitulo) => {
                 }]
             }
             const create = {};
-
             create[`users/${userId}/cardapio/0/categoria/${categoriaId}`] = newCategoria;
             update(dbRef, create);
 
@@ -143,7 +145,9 @@ export const excluirCategoria = async (userId, categoriaId) => {
     }
 }
 
+//
 /* ------------------- ITENS ------------------- */
+//
 
 // Procurar e Criar item (na categoria) no firebase
 export const criarItem = async (userId, categoriaId, getTitulo, getDesc, getValor) => {

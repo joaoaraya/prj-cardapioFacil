@@ -49,14 +49,15 @@ export function Menu() {
                     dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
                     setCardapioDados(dados); // Atualiza o estado do componente com os dados
                 }
-            } catch (e) {
-                console.log(e); // Ocorreu um erro;
+            }
+            catch (e) {
+                console.error(e);
             }
         })()
     }, []);
     // OBS: executar o useEffect: 1x = []); constante = basta remver o []
 
-    // Compartilhar URL
+    /* Compartilhar URL */
     const shareData = {
         title: 'Cardápio Fácil',
         text: 'Monte e compartilhe seu cardápio fácil, rápido e de graça!',
@@ -66,7 +67,7 @@ export function Menu() {
         navigator.share(shareData);
     }
 
-    // Voltar para o início
+    /* Voltar para o início */
     const criarNovoCardapio = () => {
         navigate('/');
     }

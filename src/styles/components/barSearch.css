@@ -15,7 +15,6 @@
 }
 
 /* Tamanho Desktop */
-
 @media screen and (min-device-width: 768px), screen and (min-width: 768px) {
     .barSearch {
         width: 80%;
@@ -24,7 +23,6 @@
 }
 
 /* Tamanho Mobile */
-
 @media screen and (max-device-width: 768px), screen and (max-width: 768px) {
     .barSearch {
         width: 90%;
