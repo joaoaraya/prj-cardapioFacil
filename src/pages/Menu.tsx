@@ -11,6 +11,7 @@ import { BarSearch } from '../components/BarSearch';
 /* Importar imagens */
 import shareIcon from '../assets/icons/share.png'
 import addIcon from '../assets/icons/add.png'
+import editIcon from '../assets/icons/edit.png'
 
 /* Importar estilo da página */
 import '../styles/pages/menu.scss'
@@ -35,6 +36,7 @@ type cardapioDadosTypes = {
 export function Menu() {
     const getUrl = window.location.pathname; // Ler Url atual
     const userId = getUrl.replace('/menu/', ''); // Obter somente o ID e apagar o restante da Url
+    const myUserId = localStorage.getItem('@cardapio-facil/userid'); // Se for o meu cardápio
     const navigate = useNavigate(); // Usar navigate
     const [cardapioDados, setCardapioDados] = useState([] as cardapioDadosTypes); // Inicia com um Array vazio, mas dizendo quais os Types dos dados
 
@@ -70,6 +72,11 @@ export function Menu() {
     /* Voltar para o início */
     const criarNovoCardapio = () => {
         navigate('/');
+    }
+
+    /* Editar meu cardápio */
+    const editarCardapio = () => {
+        navigate('/menu/edit');
     }
 
     return (
@@ -113,9 +120,15 @@ export function Menu() {
             </div>
 
             <div className="btnFloatBig">
-                <button onClick={criarNovoCardapio} className="btnNew" title="Crie seu cardápio">
-                    <img src={addIcon} alt="add" />
-                </button>
+                {userId == myUserId ?
+                    <button onClick={editarCardapio} className="btnNew" title="Editar cardápio">
+                        <img src={editIcon} alt="edit" />
+                    </button>
+                    :
+                    <button onClick={criarNovoCardapio} className="btnNew" title="Crie seu cardápio">
+                        <img src={addIcon} alt="add" />
+                    </button>
+                }
             </div>
         </div>
     )

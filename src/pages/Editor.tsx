@@ -92,7 +92,7 @@ export function Editor() {
                                 <>
                                     {c.show ?
                                         <>
-                                            <ItemImgEditor imgURL={c.imgURL} />
+                                            <ItemImgEditor user={userId as string} id={cIndex} imgURL={c.imgURL} />
                                             <ItemTagEditor user={userId as string} id={cIndex} titulo={c.titulo} />
                                             {c.itens.map((d, dIndex) =>
                                                 <>

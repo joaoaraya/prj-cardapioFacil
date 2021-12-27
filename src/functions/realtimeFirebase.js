@@ -71,6 +71,26 @@ export const novoCardapio = async (userId) => {
 }
 
 //
+/* ------------------- IMAGEM DA CATEGORIA ------------------- */
+//
+
+// Atualizar imagem (da categoria) no firebase
+export const atualizarImagem = async (userId, categoriaId, getTag) => {
+
+    const caminho = ref(db, `users/${userId}/cardapio/0/categoria/${categoriaId}`);
+    const dados = { imgURL: getTag }; // Dado que será atualizado
+
+    await update(caminho, dados);
+    try {
+        return 'sucess';
+    }
+    catch (e) {
+        console.error("Erro ao atualizar: ", e);
+        return 'error';
+    }
+}
+
+//
 /* ------------------- CATEGORIAS ------------------- */
 //
 
