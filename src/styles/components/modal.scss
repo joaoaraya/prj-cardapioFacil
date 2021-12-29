@@ -18,24 +18,24 @@
         width: 100%;
         max-width: 360px;
 
-        form {
+        .form {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-flow: column nowrap;
 
-            img {
+            .imgDel {
                 height: 64px;
                 width: 64px;
                 padding: 24px;
             }
 
-            h1,
-            h2 {
+            .del,
+            .delDesc {
                 text-align: center;
             }
 
-            h1.del {
+            .del {
                 font-size: 1.5rem;
                 color: rgb(248, 117, 77);
             }

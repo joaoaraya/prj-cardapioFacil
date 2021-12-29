@@ -23,6 +23,8 @@ export function ItemImgEditor({ user, id, imgURL }: ImgProps) {
     const [showModal, setModal] = useState(false);
     const [getImgURL, setImgURL] = useState(imgURL);
     const [tag, setTag] = useState('');
+    const [tags, setTags] = useState([] as Array<string>);
+    const [btnSaveOff, setBtnSaveOff] = useState(true);
     const [btnSaveTxt, setBtnSaveTxt] = useState('Salvar');
 
     // Funções
@@ -40,13 +42,20 @@ export function ItemImgEditor({ user, id, imgURL }: ImgProps) {
     }
     const setDefault = () => {
         setTag('');
+        setTags([]);
         setImgURL(imgURL);
+        setBtnSaveOff(true);
         setBtnSaveTxt('Salvar');
     }
     const fechar = () => {
         // Fechar modal e redefinir variaveis
         setModal(false);
         setDefault();
+    }
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter') {
+            buscar();
+        }
     }
     const buscar = async () => {
         const url = `https://source.unsplash.com/480x480/?${tag}`;
@@ -60,6 +69,11 @@ export function ItemImgEditor({ user, id, imgURL }: ImgProps) {
         const res = await fetch(url, options)
         try {
             setImgURL(res.url);
+            // Separar tags após a virgula e incluir dentro de um array
+            const separar = tag.split(",");
+            setTags(separar);
+            // Liberar botão salvar
+            setBtnSaveOff(false);
         }
         catch (e) {
             console.error(e);
@@ -75,18 +89,23 @@ export function ItemImgEditor({ user, id, imgURL }: ImgProps) {
             </div>
 
             {showModal ?
-                <Modal>
-                    <input type="search" placeholder="Procure imagens por tags" value={tag} onInput={txt => setTag((txt.target as HTMLTextAreaElement).value)} />
-                    <button type='button' onClick={buscar} className="btnSearch">
-                        <img src={refreshIcon} alt="" />
-                    </button>
-                    <span>
-                        <h1 className='tag'>{tag}</h1>
-                        <img src={getImgURL} alt="" />
-                    </span>
-                    <button type='button' onClick={salvar} className="btnSave">{btnSaveTxt}</button>
-                    <button type='button' onClick={fechar} className="btnClose">Voltar</button>
-                </Modal> : null
+                <div className="itemImgEditorModal">
+                    <Modal>
+                        <input type="search" placeholder="Procure imagens por tags" value={tag} onInput={txt => setTag((txt.target as HTMLTextAreaElement).value)} onKeyDown={handleKeyDown} />
+
+                        <div className='txtTag'>
+                            {tags.map(arrayContent => <h1>{arrayContent}</h1>)}
+                        </div>
+
+                        <div className='imgTag' style={{ backgroundImage: `url("${getImgURL}")` }} />
+                        <button type='button' onClick={buscar} className="btnSearch" title="Imagem aleatória">
+                            <img src={refreshIcon} alt="" />
+                        </button>
+
+                        <button type='button' onClick={salvar} className="btnSave" disabled={btnSaveOff}>{btnSaveTxt}</button>
+                        <button type='button' onClick={fechar} className="btnClose">Voltar</button>
+                    </Modal>
+                </div> : null
             }
         </>
     )

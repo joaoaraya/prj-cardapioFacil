@@ -10,9 +10,9 @@ export const Modal = ({ children }: ItemProps) => {
     return (
         <div className="modal">
             <div className="container">
-                <form>
+                <div className="form">
                     {children}
-                </form>
+                </div>
             </div>
         </div>
     )

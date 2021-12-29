@@ -85,9 +85,9 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
             }
             {showModalDel ?
                 <Modal>
-                    <img src={delIcon} alt="delete" />
+                    <img className='imgDel' src={delIcon} alt="delete" />
                     <h1 className='del'>Remover categoria <ins>{getTitulo}</ins> ?</h1>
-                    <h2>Todos os itens serão apagados juntos!</h2>
+                    <h2 className='delDesc'>Todos os itens serão apagados juntos!</h2>
                     <button type='button' onClick={excluir} className="btnSave del">Excluir</button>
                     <button type='button' onClick={fechar} className="btnClose">Cancelar</button>
                 </Modal> : null
