@@ -4,6 +4,7 @@ import { procurarCardapio } from '../functions/realtimeFirebase';
 import { logOut } from '../functions/googleAuth'
 
 /* Importar Componetes da pagina */
+import { LogoEditor } from '../components/LogoEditor'
 import { Item, ItemButtons } from '../components/Item';
 import { ItemTagEditor } from '../components/ItemTagEditor';
 import { ItemImgEditor } from '../components/ItemImgEditor';
@@ -11,7 +12,6 @@ import { BtnAddItem } from '../components/BtnAddItem';
 import { BtnAddTag } from '../components/BtnAddTag';
 
 /* Importar imagens */
-import Logo from '../assets/images/logo.png'
 import linkIcon from '../assets/icons/link.svg'
 import logOffIcon from '../assets/icons/exit.png';
 
@@ -67,9 +67,7 @@ export function Editor() {
     return (
         <div className="editor">
             <div className="headerNav">
-                <div className="appLogo">
-                    <img src={Logo} alt="Logo" title="Cardápio Fácil" />
-                </div>
+                <LogoEditor />
 
                 <button onClick={openUrl} className="openLink">
                     <span>Visualizar cardápio</span>

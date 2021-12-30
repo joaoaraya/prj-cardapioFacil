@@ -29,7 +29,7 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
-        if (getTitulo != '') {
+        if (getTitulo !== '') {
             setBtnSaveOff(false);
         } else {
             setBtnSaveOff(true);
@@ -42,7 +42,7 @@ export function ItemTagEditor({ user, id, titulo }: ItemProps) {
 
         const resposta: any = await atualizarCategoria(user, id, getTitulo);
         try {
-            resposta == 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
+            resposta === 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
         }
         catch (e) {
             setBtnSaveTxt('Não salvo!');

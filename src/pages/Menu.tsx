@@ -6,7 +6,7 @@ import { procurarCardapio } from '../functions/realtimeFirebase'
 import { Item } from '../components/Item';
 import { ItemTag } from '../components/ItemTag';
 import { ItemImg } from '../components/ItemImg';
-import { BarSearch } from '../components/BarSearch';
+import { LogoMenu } from '../components/LogoMenu';
 
 /* Importar imagens */
 import shareIcon from '../assets/icons/share.png'
@@ -44,8 +44,8 @@ export function Menu() {
         (async () => {
             const dadosDoFirebase: any = await procurarCardapio(userId); // Executa a função para procurar os dados no firebase, + envia o uuid
             try {
-                if (dadosDoFirebase == 404) {
-                    navigate('/'); // MUDAR PARA UMA PAGINA "CARDAPIO NAO ENCONTRADO"
+                if (dadosDoFirebase === 404) {
+                    navigate('/'); // Página de 'CARDAPIO NÃO ENCONTRADO'
                 } else {
                     const dados = []; // Cria um array
                     dados.push(dadosDoFirebase); // Insere o Objeto com os dados do firebase no Array
@@ -60,12 +60,12 @@ export function Menu() {
     // OBS: executar o useEffect: 1x = []); constante = basta remver o []
 
     /* Compartilhar URL */
-    const shareData = {
-        title: 'Cardápio Fácil',
-        text: 'Monte e compartilhe seu cardápio fácil, rápido e de graça!',
-        url: getUrl
-    }
     const compartilharCardapio = () => {
+        const shareData = {
+            title: 'Cardápio Fácil',
+            text: 'Monte e compartilhe seu cardápio fácil, rápido e de graça!',
+            url: getUrl
+        }
         navigator.share(shareData);
     }
 
@@ -82,7 +82,7 @@ export function Menu() {
     return (
         <div className="menu">
             <div className="header">
-                <BarSearch />
+                <LogoMenu />
             </div>
             <div className="menu-items">
                 {cardapioDados.map(a =>
@@ -91,7 +91,7 @@ export function Menu() {
                             <>
                                 {c.show ?
                                     <>
-                                        {c.imgURL != "" ? <ItemImg imgURL={c.imgURL} /> : <></>}
+                                        {c.imgURL !== "" ? <ItemImg imgURL={c.imgURL} /> : <></>}
                                         <ItemTag titulo={c.titulo} />
                                         {c.itens.map(d =>
                                             <>
@@ -120,7 +120,7 @@ export function Menu() {
             </div>
 
             <div className="btnFloatBig">
-                {userId == myUserId ?
+                {userId === myUserId ?
                     <button onClick={editarCardapio} className="btnNew" title="Editar cardápio">
                         <img src={editIcon} alt="edit" />
                     </button>

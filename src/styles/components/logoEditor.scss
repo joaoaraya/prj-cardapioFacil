@@ -1,0 +1,29 @@
+.logoEditor {
+    img {
+        height: 48px;
+    }
+}
+
+/* Icone large */
+@media screen and (min-device-width: 340px), screen and (min-width: 340px) {
+    .logoEditor {
+        #large {
+            display: block;
+        }
+        #small {
+            display: none;
+        }
+    }
+}
+
+/* Icone small tela menor que 340px */
+@media screen and (max-device-width: 340px), screen and (max-width: 340px) {
+    .logoEditor {
+        #large {
+            display: none;
+        }
+        #small {
+            display: block;
+        }
+    }
+}

@@ -4,10 +4,6 @@
     margin: auto; // centralizar a página após a largura maxima
 
     .headerNav {
-        .appLogo > img {
-            height: 48px;
-        }
-
         .openLink {
             display: flex;
             align-items: center;
@@ -116,7 +112,7 @@
             gap: 16px;
             margin-bottom: 24px;
 
-            .appLogo {
+            .logoEditor {
                 grid-column: 1;
                 grid-row: 1;
             }

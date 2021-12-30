@@ -46,7 +46,7 @@ export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: Item
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
-        if (getTitulo != '' && getDesc != '' && getValor != '') {
+        if (getTitulo !== '' && getDesc !== '' && getValor !== '') {
             setBtnSaveOff(false);
         } else {
             setBtnSaveOff(true);
@@ -59,7 +59,7 @@ export function ItemButtons({ user, categoriaId, id, titulo, desc, valor }: Item
 
         const resposta: any = await atualizarItem(user, categoriaId, id, getTitulo, getDesc, getValor);
         try {
-            resposta == 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
+            resposta === 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
         }
         catch (e) {
             setBtnSaveTxt('Não salvo!');

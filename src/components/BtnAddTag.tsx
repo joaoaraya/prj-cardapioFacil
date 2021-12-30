@@ -26,7 +26,7 @@ export function BtnAddTag({ user }: ItemProps) {
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
-        if (getTitulo != '') {
+        if (getTitulo !== '') {
             setBtnSaveOff(false);
         } else {
             setBtnSaveOff(true);
@@ -39,7 +39,7 @@ export function BtnAddTag({ user }: ItemProps) {
 
         const resposta: any = await criarCategoria(user, getTitulo);
         try {
-            if (resposta == 'sucess') {
+            if (resposta === 'sucess') {
                 setBtnSaveTxt('Salvo!');
                 setBtnSaveOff(false);
                 fechar();

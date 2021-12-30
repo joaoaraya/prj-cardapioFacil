@@ -1,64 +1,47 @@
 .menu {
-    padding: 96px 16px 142px 16px;
+    padding: 0 16px 148px 16px;
     max-width: 1024px;
     margin: auto; // centralizar a página após a largura maxima
 
     .header {
         display: flex;
         justify-content: center;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        padding: 16px 0;
     }
 
     .btnFloatMini {
         position: fixed;
-        right: 52px;
-        bottom: 140px;
         border-radius: 50%;
         box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.25);
         overflow-x: auto;
         z-index: 5;
 
         .btnShare {
-            width: 48px;
-            height: 48px;
-            background-color: #6e6e80;
+            background-color: rgb(110, 110, 129);
 
             img {
                 margin: auto;
-                width: 24px;
-                height: 24px;
             }
             &:hover {
-                background-color: #44abca;
+                background-color: rgb(68, 171, 202);
             }
         }
     }
 
     .btnFloatBig {
         position: fixed;
-        right: 40px;
-        bottom: 48px;
         border-radius: 50%;
         box-shadow: 4px 16px 20px rgba(0, 0, 0, 0.25);
         overflow-x: auto;
         z-index: 5;
 
         .btnNew {
-            padding: 20px;
-            width: 72px;
-            height: 72px;
-            background-color: #fe8f00;
+            background-color: rgb(254, 143, 0);
 
             img {
-                width: 24px;
-                height: 24px;
+                margin: auto;
             }
             &:hover {
-                background-color: #cc6708;
+                background-color: rgb(204, 103, 8);
             }
         }
     }
@@ -70,7 +53,6 @@
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: auto;
-        //grid-auto-flow: dense;
         grid-gap: 16px;
 
         .itemImg {
@@ -81,11 +63,40 @@
         .itemTag {
             align-self: start;
         }
-
         .item,
         .itemTag {
             grid-column: 2;
             grid-row: auto;
+        }
+    }
+
+    .btnFloatMini {
+        right: 52px;
+        bottom: 140px;
+
+        .btnShare {
+            width: 48px;
+            height: 48px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .btnFloatBig {
+        right: 40px;
+        bottom: 48px;
+
+        .btnNew {
+            width: 72px;
+            height: 72px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
         }
     }
 }
@@ -103,6 +114,36 @@
         .item {
             grid-column: 1;
             grid-row: auto;
+        }
+    }
+
+    .btnFloatMini {
+        right: 22px;
+        bottom: 90px;
+
+        .btnShare {
+            width: 44px;
+            height: 44px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .btnFloatBig {
+        right: 16px;
+        bottom: 18px;
+
+        .btnNew {
+            width: 56px;
+            height: 56px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
         }
     }
 }

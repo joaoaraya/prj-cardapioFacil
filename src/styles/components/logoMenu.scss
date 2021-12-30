@@ -1,0 +1,31 @@
+.logoMenu {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Tamanho Desktop */
+@media screen and (min-device-width: 768px), screen and (min-width: 768px) {
+    #ol,
+    #or {
+        max-width: 160px;
+    }
+    #logo {
+        max-width: 300px;
+    }
+}
+
+/* Tamanho Mobile */
+@media screen and (max-device-width: 768px), screen and (max-width: 768px) {
+    #ol,
+    #or {
+        display: none;
+    }
+    #logo {
+        width: 60%;
+    }
+}

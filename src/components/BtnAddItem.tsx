@@ -31,7 +31,7 @@ export function BtnAddItem({ user, categoriaId }: ItemProps) {
 
     // Checar se as inputs estão vazias (caso não, liberar o botão salvar)
     useEffect(() => {
-        if (getTitulo != '' && getDesc != '' && getValor != '') {
+        if (getTitulo !== '' && getDesc !== '' && getValor !== '') {
             setBtnSaveOff(false);
         } else {
             setBtnSaveOff(true);
@@ -44,7 +44,7 @@ export function BtnAddItem({ user, categoriaId }: ItemProps) {
 
         const resposta: any = await criarItem(user, categoriaId, getTitulo, getDesc, getValor);
         try {
-            if (resposta == 'sucess') {
+            if (resposta === 'sucess') {
                 setBtnSaveTxt('Salvo!');
                 setBtnSaveOff(false);
                 fechar();

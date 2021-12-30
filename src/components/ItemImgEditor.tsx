@@ -33,7 +33,7 @@ export function ItemImgEditor({ user, id, imgURL }: ImgProps) {
 
         const resposta: any = await atualizarImagem(user, id, getImgURL);
         try {
-            resposta == 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
+            resposta === 'sucess' ? setBtnSaveTxt('Salvo!') : setBtnSaveTxt('Não salvo!');
         }
         catch (e) {
             setBtnSaveTxt('Não salvo!');
