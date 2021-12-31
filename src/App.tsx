@@ -11,7 +11,7 @@ OBS 2: ao usar :id vc pode usar qualquer coisa escrita após '/menu/....' */
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/menu/edit' element={<Editor />} />
