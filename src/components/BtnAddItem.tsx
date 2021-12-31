@@ -6,7 +6,7 @@ import { criarItem } from '../functions/realtimeFirebase';
 import '../styles/components/btnAddItem.scss'
 
 /* Imagens */
-import addIcon from '../assets/icons/add.png'
+import addIcon from '../assets/icons/add.svg'
 
 /* Componentes */
 import { Modal } from '../components/Modal'

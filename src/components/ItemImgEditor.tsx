@@ -1,10 +1,10 @@
 /* Importar dependencias */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { atualizarImagem } from '../functions/realtimeFirebase';
 
 /* importar imagens */
-import cameraIcon from '../assets/icons/camera.png';
-import refreshIcon from '../assets/icons/refresh.png'
+import cameraIcon from '../assets/icons/camera.svg';
+import refreshIcon from '../assets/icons/refresh.svg'
 
 /* Componentes */
 import { Modal } from '../components/Modal'

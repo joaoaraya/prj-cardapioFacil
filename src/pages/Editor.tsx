@@ -13,7 +13,7 @@ import { BtnAddTag } from '../components/BtnAddTag';
 
 /* Importar imagens */
 import linkIcon from '../assets/icons/link.svg'
-import logOffIcon from '../assets/icons/exit.png';
+import logOffIcon from '../assets/icons/exit.svg';
 
 /* Importar estilo da página */
 import '../styles/pages/editor.scss'

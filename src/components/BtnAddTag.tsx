@@ -6,7 +6,7 @@ import { criarCategoria } from '../functions/realtimeFirebase';
 import '../styles/components/btnAddTag.scss'
 
 /* Imagens */
-import addIcon from '../assets/icons/add.png'
+import addIcon from '../assets/icons/add.svg'
 
 /* Componentes */
 import { Modal } from '../components/Modal'

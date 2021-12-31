@@ -9,9 +9,9 @@ import { ItemImg } from '../components/ItemImg';
 import { LogoMenu } from '../components/LogoMenu';
 
 /* Importar imagens */
-import shareIcon from '../assets/icons/share.png'
-import addIcon from '../assets/icons/add.png'
-import editIcon from '../assets/icons/edit.png'
+import shareIcon from '../assets/icons/share.svg'
+import addIcon from '../assets/icons/add.svg'
+import editIcon from '../assets/icons/edit.svg'
 
 /* Importar estilo da página */
 import '../styles/pages/menu.scss'

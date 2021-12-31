@@ -6,9 +6,9 @@ import { atualizarCategoria, excluirCategoria } from '../functions/realtimeFireb
 import '../styles/components/itemTagEditor.scss';
 
 /* Importar Imagens */
-import delIcon from '../assets/icons/delete.png'
-import removeIcon from '../assets/icons/remove.png'
-import editIcon from '../assets/icons/edit.png';
+import delIcon from '../assets/icons/delete.svg'
+import removeIcon from '../assets/icons/remove.svg'
+import editIcon from '../assets/icons/edit.svg';
 
 /* Componentes */
 import { Modal } from '../components/Modal'

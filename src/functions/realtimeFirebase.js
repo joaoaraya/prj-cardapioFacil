@@ -30,7 +30,12 @@ export const procurarCardapio = async (getUserId, getEditor = false) => {
     // Objeto (cardápio) não encontrado
     else {
         if (editor) {
-            novoCardapio(userId);
+            await novoCardapio(userId);
+            try {
+                window.location.reload()
+            } catch (e) {
+                return e;
+            }
         } else {
             return 404;
         }

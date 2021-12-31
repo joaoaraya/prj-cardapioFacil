@@ -6,7 +6,7 @@ import { atualizarItem, excluirItem } from '../functions/realtimeFirebase';
 import '../styles/components/item.scss'
 
 /* Importar imagens */
-import delIcon from '../assets/icons/delete.png'
+import delIcon from '../assets/icons/delete.svg'
 
 /* Componentes */
 import { Modal } from '../components/Modal'
