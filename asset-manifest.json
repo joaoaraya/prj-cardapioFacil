@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/prj-cardapioFacil/static/css/main.a72524b4.chunk.css",
-    "main.js": "/prj-cardapioFacil/static/js/main.dae279ff.chunk.js",
-    "main.js.map": "/prj-cardapioFacil/static/js/main.dae279ff.chunk.js.map",
+    "main.js": "/prj-cardapioFacil/static/js/main.65201517.chunk.js",
+    "main.js.map": "/prj-cardapioFacil/static/js/main.65201517.chunk.js.map",
     "runtime-main.js": "/prj-cardapioFacil/static/js/runtime-main.896e479a.js",
     "runtime-main.js.map": "/prj-cardapioFacil/static/js/runtime-main.896e479a.js.map",
-    "static/js/2.5a1c4706.chunk.js": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js",
-    "static/js/2.5a1c4706.chunk.js.map": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js.map",
+    "static/js/2.9a92fc56.chunk.js": "/prj-cardapioFacil/static/js/2.9a92fc56.chunk.js",
+    "static/js/2.9a92fc56.chunk.js.map": "/prj-cardapioFacil/static/js/2.9a92fc56.chunk.js.map",
     "index.html": "/prj-cardapioFacil/index.html",
     "static/css/main.a72524b4.chunk.css.map": "/prj-cardapioFacil/static/css/main.a72524b4.chunk.css.map",
-    "static/js/2.5a1c4706.chunk.js.LICENSE.txt": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js.LICENSE.txt",
+    "static/js/2.9a92fc56.chunk.js.LICENSE.txt": "/prj-cardapioFacil/static/js/2.9a92fc56.chunk.js.LICENSE.txt",
     "static/media/add.79bff141.svg": "/prj-cardapioFacil/static/media/add.79bff141.svg",
     "static/media/camera.d29a2254.svg": "/prj-cardapioFacil/static/media/camera.d29a2254.svg",
     "static/media/delete.8f9d5fd1.svg": "/prj-cardapioFacil/static/media/delete.8f9d5fd1.svg",
@@ -28,8 +28,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.896e479a.js",
-    "static/js/2.5a1c4706.chunk.js",
+    "static/js/2.9a92fc56.chunk.js",
     "static/css/main.a72524b4.chunk.css",
-    "static/js/main.dae279ff.chunk.js"
+    "static/js/main.65201517.chunk.js"
   ]
 }
