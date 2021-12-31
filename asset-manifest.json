@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/prj-cardapioFacil/static/css/main.a72524b4.chunk.css",
+    "main.js": "/prj-cardapioFacil/static/js/main.dae279ff.chunk.js",
+    "main.js.map": "/prj-cardapioFacil/static/js/main.dae279ff.chunk.js.map",
+    "runtime-main.js": "/prj-cardapioFacil/static/js/runtime-main.896e479a.js",
+    "runtime-main.js.map": "/prj-cardapioFacil/static/js/runtime-main.896e479a.js.map",
+    "static/js/2.5a1c4706.chunk.js": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js",
+    "static/js/2.5a1c4706.chunk.js.map": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js.map",
+    "index.html": "/prj-cardapioFacil/index.html",
+    "static/css/main.a72524b4.chunk.css.map": "/prj-cardapioFacil/static/css/main.a72524b4.chunk.css.map",
+    "static/js/2.5a1c4706.chunk.js.LICENSE.txt": "/prj-cardapioFacil/static/js/2.5a1c4706.chunk.js.LICENSE.txt",
+    "static/media/add.79bff141.svg": "/prj-cardapioFacil/static/media/add.79bff141.svg",
+    "static/media/camera.d29a2254.svg": "/prj-cardapioFacil/static/media/camera.d29a2254.svg",
+    "static/media/delete.8f9d5fd1.svg": "/prj-cardapioFacil/static/media/delete.8f9d5fd1.svg",
+    "static/media/edit.b69f7e17.svg": "/prj-cardapioFacil/static/media/edit.b69f7e17.svg",
+    "static/media/exit.64e545b3.svg": "/prj-cardapioFacil/static/media/exit.64e545b3.svg",
+    "static/media/google.aaf56a1f.svg": "/prj-cardapioFacil/static/media/google.aaf56a1f.svg",
+    "static/media/home.1df88313.svg": "/prj-cardapioFacil/static/media/home.1df88313.svg",
+    "static/media/link.79ddd1e0.svg": "/prj-cardapioFacil/static/media/link.79ddd1e0.svg",
+    "static/media/logo-small.a375b298.svg": "/prj-cardapioFacil/static/media/logo-small.a375b298.svg",
+    "static/media/logo.fde082ad.svg": "/prj-cardapioFacil/static/media/logo.fde082ad.svg",
+    "static/media/ornamento-left.d8f19217.svg": "/prj-cardapioFacil/static/media/ornamento-left.d8f19217.svg",
+    "static/media/ornamento-right.9d2e211e.svg": "/prj-cardapioFacil/static/media/ornamento-right.9d2e211e.svg",
+    "static/media/refresh.53d04686.svg": "/prj-cardapioFacil/static/media/refresh.53d04686.svg",
+    "static/media/remove.02b274c5.svg": "/prj-cardapioFacil/static/media/remove.02b274c5.svg",
+    "static/media/share.b8e66d1c.svg": "/prj-cardapioFacil/static/media/share.b8e66d1c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.896e479a.js",
+    "static/js/2.5a1c4706.chunk.js",
+    "static/css/main.a72524b4.chunk.css",
+    "static/js/main.dae279ff.chunk.js"
+  ]
+}
